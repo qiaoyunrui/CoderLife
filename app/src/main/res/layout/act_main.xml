@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="title"
+            type="com.juhezi.coderslife.entry.Title" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@color/colorPrimary"
-            android:theme="@style/Toolbar" />
+            android:theme="@style/Toolbar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@{title.content}"
+                android:textSize="@dimen/act_main_title_size" />
+
+        </android.support.v7.widget.Toolbar>
 
         <RelativeLayout
             android:id="@+id/rl_act_main_frag"

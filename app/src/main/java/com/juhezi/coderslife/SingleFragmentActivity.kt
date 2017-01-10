@@ -1,5 +1,7 @@
 package com.juhezi.coderslife
 
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
@@ -11,11 +13,11 @@ import android.util.Log
 /**
  * Created by qiao1 on 2017/1/9.
  */
-abstract class SingleFragmentActivity : AppCompatActivity() {
+abstract class SingleFragmentActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     private var TAG = "SingleFragmentActivity"
 
-    protected open fun init() {
+    protected open fun init(binding: T) {
     }
 
     protected abstract fun getFragment(): Fragment
@@ -30,8 +32,7 @@ abstract class SingleFragmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG,this.toString())
-        setContentView(getActLayoutRes())
+        var binding = DataBindingUtil.setContentView<T>(this, getActLayoutRes())
         var fragmentManager = supportFragmentManager
         mFragment = fragmentManager.findFragmentById(getFragContainerId())
         if (mFragment == null) {
@@ -40,7 +41,7 @@ abstract class SingleFragmentActivity : AppCompatActivity() {
                     .add(getFragContainerId(), mFragment)
                     .commit()
         }
-        init()
+        init(binding)
     }
 
 }

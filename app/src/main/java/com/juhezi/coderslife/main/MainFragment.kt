@@ -1,11 +1,14 @@
 package com.juhezi.coderslife.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.juhezi.coderslife.R
+import com.juhezi.coderslife.test.TestAct
 
 /**
  * Created by qiao1 on 2017/1/9.
@@ -25,7 +28,13 @@ class MainFragment private constructor() : Fragment() {
         return rootView
     }
 
-    private fun  initEvent(rootView: View?) {
+    private var fabAdd: FloatingActionButton? = null
+
+    private fun initEvent(rootView: View?) {
+        fabAdd = rootView?.findViewById(R.id.fab_add) as FloatingActionButton
+        fabAdd?.setOnClickListener {
+//            startActivity(Intent(context, TestAct::class.java))
+        }
     }
 
 }
