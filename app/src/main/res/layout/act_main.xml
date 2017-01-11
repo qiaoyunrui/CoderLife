@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,32 +10,48 @@
             type="com.juhezi.coderslife.entry.Title" />
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dl_act_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:openDrawer="start">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_act_main"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimary"
-            android:theme="@style/Toolbar">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@{title.content}"
-                android:textSize="@dimen/act_main_title_size" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_act_main"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/colorPrimary"
+                android:theme="@style/Toolbar">
 
-        </android.support.v7.widget.Toolbar>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{title.content}"
+                    android:textSize="@dimen/act_main_title_size" />
 
-        <RelativeLayout
-            android:id="@+id/rl_act_main_frag"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_act_main_frag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nv_act_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/item_nav_act_main" />
+
+    </android.support.v4.widget.DrawerLayout>
 
 </layout>

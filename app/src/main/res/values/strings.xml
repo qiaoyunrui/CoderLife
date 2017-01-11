@@ -1,2 +1,5 @@
 <resources>
+    <string name="today_life">今日日志</string>
+    <string name="drawer_layout_open_desc">打开抽屉</string>
+    <string name="drawer_layout_close_desc">关闭抽屉</string>
 </resources>
