@@ -13,7 +13,7 @@ import com.juhezi.coderslife.test.TestAct
 /**
  * Created by qiao1 on 2017/1/9.
  */
-class MainFragment private constructor() : Fragment() {
+class MainFragment : Fragment() {
     companion object {
         fun getInstance() = Holder.sInstance
     }

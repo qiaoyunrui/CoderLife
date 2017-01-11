@@ -11,10 +11,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.SingleFragmentActivity;
 import com.juhezi.coderslife.databinding.ActMainBinding;
