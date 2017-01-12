@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><!--需求-->
+<?xml version="1.0" encoding="utf-8"?><!--需求Item-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="logContent"
+            type="com.juhezi.coderslife.entry.LogContent" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -9,15 +16,22 @@
             android:id="@+id/cb_select_item_requirement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin" />
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_toLeftOf="@+id/img_edit_item_requirement"
+            android:checked="@{logContent.state}"
+            android:text="@{logContent.content}"
+            android:textSize="@dimen/item_requirement_text_size" />
 
         <ImageView
             android:id="@+id/img_edit_item_requirement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:foreground="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_edit" />
 
     </RelativeLayout>
