@@ -2,4 +2,7 @@
     <string name="today_life">今日日志</string>
     <string name="drawer_layout_open_desc">打开抽屉</string>
     <string name="drawer_layout_close_desc">关闭抽屉</string>
+    <string name="requirement">需求</string>
+    <string name="debug">Bug</string>
+    <string name="version">版本</string>
 </resources>
