@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_frag_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:clickable="true"
-        android:src="@drawable/ic_add"
-        app:rippleColor="@color/colorPrimary" />
+    <data>
 
-    <View
-        android:id="@+id/v_frag_main_overlay"
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:clickable="true"
-        android:elevation="@dimen/v_frag_main_overly_elevation"
-        android:visibility="visible" />
+        android:orientation="vertical">
 
-    <io.codetail.widget.RevealFrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:elevation="@dimen/rf_frag_main_elevation">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_frag_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_frag_main_add_item_wrapper"
-            android:layout_width="@dimen/frag_main_add_item_width"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:clickable="true"
+            android:src="@drawable/ic_add"
+            app:fabSize="auto"
+            app:rippleColor="@color/colorPrimary" />
+
+        <View
+            android:id="@+id/v_frag_main_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha_30"
+            android:clickable="true"
+            android:elevation="@dimen/v_frag_main_overly_elevation"
+            android:visibility="gone" />
+
+        <io.codetail.widget.RevealFrameLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="visible">
+            android:elevation="@dimen/rf_frag_main_elevation">
 
-            <android.support.design.widget.NavigationView
-                android:id="@+id/nav_frag_main_add_item"
-                android:layout_width="match_parent"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_frag_main_add_item_wrapper"
+                android:layout_width="@dimen/frag_main_add_item_width"
                 android:layout_height="wrap_content"
-                app:menu="@menu/item_nav_add_act_main" />
+                android:layout_gravity="center"
+                android:visibility="invisible">
 
-        </android.support.v7.widget.CardView>
+                <android.support.design.widget.NavigationView
+                    android:id="@+id/nav_frag_main_add_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/item_nav_add_act_main" />
 
-    </io.codetail.widget.RevealFrameLayout>
+            </android.support.v7.widget.CardView>
 
-</FrameLayout>
+        </io.codetail.widget.RevealFrameLayout>
+
+    </FrameLayout>
+
+</layout>

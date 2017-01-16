@@ -5,4 +5,6 @@
     <string name="requirement">需求</string>
     <string name="debug">Bug</string>
     <string name="version">版本</string>
+    <string name="input_requirement_content">输入要完成的需求内容</string>
+    <string name="ok">确定</string>
 </resources>

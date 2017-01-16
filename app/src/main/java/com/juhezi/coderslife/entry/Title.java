@@ -8,8 +8,9 @@ import android.support.annotation.StringDef;
 public class Title {
 
     public static final String TODAY_TITLE = "今日日志";
+    public static final String ADD_REQUIREMENT = "添加需求";
 
-    @StringDef({TODAY_TITLE})
+    @StringDef({TODAY_TITLE, ADD_REQUIREMENT})
     public @interface TITLE_TYPE {
     }
 

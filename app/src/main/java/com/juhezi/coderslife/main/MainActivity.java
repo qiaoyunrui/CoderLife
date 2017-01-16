@@ -78,6 +78,8 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else if (((MainFragment) fragment).isItemOpen()) { //如果Item呈打开状态
+            ((MainFragment) fragment).closeItem();
         } else {
             super.onBackPressed();
         }

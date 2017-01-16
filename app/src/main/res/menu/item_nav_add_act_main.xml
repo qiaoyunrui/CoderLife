@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/item_nav_add_main_requirement"
         android:icon="@drawable/ic_requirement"
         android:title="@string/requirement" />
 
