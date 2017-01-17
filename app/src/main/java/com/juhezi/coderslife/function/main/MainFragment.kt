@@ -1,4 +1,4 @@
-package com.juhezi.coderslife.main
+package com.juhezi.coderslife.function.main
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -14,7 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.juhezi.coderslife.R
-import com.juhezi.coderslife.add_requirement.AddRequirementActivity
+import com.juhezi.coderslife.function.add_requirement.AddRequirementActivity
 import com.juhezi.coderslife.databinding.FragMainBinding
 import com.konifar.fab_transformation.FabTransformation
 

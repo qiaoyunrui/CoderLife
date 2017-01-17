@@ -1,4 +1,4 @@
-package com.juhezi.coderslife.main
+package com.juhezi.coderslife.function.main
 
 import com.juhezi.coderslife.BaseViewModel
 
