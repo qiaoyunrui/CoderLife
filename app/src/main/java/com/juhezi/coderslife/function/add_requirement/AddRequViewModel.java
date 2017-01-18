@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.add_requirement;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.juhezi.coderslife.BaseViewModel;
@@ -15,8 +16,8 @@ public class AddRequViewModel extends
         BaseViewModel<ActAddRequirementBinding> {
     private static String TAG = "AddRequViewModel";
 
-    public AddRequViewModel(ActAddRequirementBinding binding) {
-        super(binding);
+    public AddRequViewModel(ActAddRequirementBinding binding, Context context) {
+        super(binding, context);
     }
 
     @Override

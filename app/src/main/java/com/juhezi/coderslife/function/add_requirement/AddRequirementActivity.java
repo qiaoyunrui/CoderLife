@@ -35,7 +35,7 @@ public class AddRequirementActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.act_add_requirement);
-        viewModel = new AddRequViewModel(mBinding);
+        viewModel = new AddRequViewModel(mBinding, this);
         initActionBar();
         initView();
     }
