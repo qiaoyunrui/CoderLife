@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_requirement_content"
                 android:maxLength="100"
-                android:text="@{logContent.content}"
+                android:text="@={logContent.content}"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/item_requirement_text_size" />
 
