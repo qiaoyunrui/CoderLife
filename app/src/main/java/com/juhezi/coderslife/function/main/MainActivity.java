@@ -29,7 +29,7 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
 
     @Override
     protected Fragment getFragment() {
-        return MainFragment.Companion.getInstance();
+        return MainFragment.getInstance();
     }
 
     @Override
