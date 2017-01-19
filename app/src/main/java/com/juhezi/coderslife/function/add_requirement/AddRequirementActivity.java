@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ActAddRequirementBinding;
+import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.coderslife.tools.Config;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -56,7 +59,21 @@ public class AddRequirementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkContentValidity()) {
                     //插入数据，回到上一个界面
-                    viewModel.submitLogContent(null);
+                    viewModel.submitLogContent(new Action1<Integer>() {
+                        @Override
+                        public void onAction(final Integer integer) {
+                            AddRequirementActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (integer == Config.RESULT_CODE_OK) {
+                                        showToast("插入成功");
+                                    } else {
+                                        showToast("插入失败");
+                                    }
+                                }
+                            });
+                        }
+                    });
                 }
             }
         });
@@ -82,5 +99,9 @@ public class AddRequirementActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

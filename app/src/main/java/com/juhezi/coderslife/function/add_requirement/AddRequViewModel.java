@@ -29,6 +29,7 @@ public class AddRequViewModel extends
 
     protected void submitLogContent(Action1<Integer> action) {
         Log.i(TAG, "[" + binding.getLogContent().getContent() + "]");
+        mResponse.addLogContent(binding.getLogContent(), action);
     }
 
 }
