@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.add_requirement;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,19 +8,17 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ActAddRequirementBinding;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
-
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
+import com.konifar.fab_transformation.FabTransformation;
 
 /**
  * Created by qiao1 on 2017/1/16.
@@ -33,6 +32,7 @@ public class AddRequirementActivity extends AppCompatActivity {
     private ActionBar mActionBar;
     private TextInputLayout mTilWrapper;
     private Button mBtnAdd;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,10 +54,13 @@ public class AddRequirementActivity extends AppCompatActivity {
     private void initView() {
         mBtnAdd = (Button) findViewById(R.id.btn_act_add_requirement_ok);
         mTilWrapper = (TextInputLayout) findViewById(R.id.til_content_wrapper);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_act_add_requirement);
         mBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkContentValidity()) {
+                    FabTransformation.with(mBtnAdd)
+                            .transformTo(mProgressBar);
                     //插入数据，回到上一个界面
                     viewModel.submitLogContent(new Action1<Integer>() {
                         @Override
@@ -66,14 +69,20 @@ public class AddRequirementActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if (integer == Config.RESULT_CODE_OK) {
-                                        showToast("插入成功");
+                                        showToast("添加日志成功");
+                                        Intent intent = new Intent();
+                                        intent.putExtra(Config.ADD_REQUIREMENT_LOG_CONTENT, mBinding.getLogContent());
+                                        setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
+                                        finish();
                                     } else {
-                                        showToast("插入失败");
+                                        showToast("添加日志失败");
                                     }
                                 }
                             });
                         }
                     });
+                } else {
+                    showToast("日志无法添加");
                 }
             }
         });

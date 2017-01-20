@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.main;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -7,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.SingleFragmentActivity;
@@ -80,5 +82,11 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "onActivityResult: ");
     }
 }

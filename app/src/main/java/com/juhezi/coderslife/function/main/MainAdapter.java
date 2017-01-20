@@ -2,6 +2,7 @@ package com.juhezi.coderslife.function.main;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class MainAdapter extends
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case LogContent.TYPE_REQUIREMENT:
+                Log.i(TAG, "onBindViewHolder: " + ((RequirementItemHolder) holder).binding);
                 ((RequirementItemHolder) holder).binding
                         .setLogContent(logContents.get(position));
                 ((RequirementItemHolder) holder).binding
@@ -81,9 +83,15 @@ public class MainAdapter extends
         public RequirementItemHolder(View itemView,
                                      ItemRequirementBinding binding) {
             super(itemView);
+            this.binding = binding;
             checkBox = binding.cbSelectItemRequirement;
             editButton = binding.imgEditItemRequirement;
         }
+    }
+
+    public void addLogContent(LogContent logContent) {
+        logContents.add(logContent);
+        notifyItemInserted(logContents.size() - 1);
     }
 
 }

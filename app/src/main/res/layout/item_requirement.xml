@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_toLeftOf="@+id/img_edit_item_requirement"
-            android:checked="@{logContent.state}"
+            android:checked="@={logContent.state}"
             android:text="@{logContent.content}"
             android:textSize="@dimen/item_requirement_text_size" />
 
@@ -31,7 +31,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:foreground="?selectableItemBackgroundBorderless"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
             android:src="@drawable/ic_edit" />
 
     </RelativeLayout>

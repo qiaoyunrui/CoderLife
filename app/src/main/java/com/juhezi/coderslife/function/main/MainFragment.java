@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,9 @@ import android.view.ViewGroup;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
+import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.function.add_requirement.AddRequirementActivity;
+import com.juhezi.coderslife.tools.Config;
 import com.konifar.fab_transformation.FabTransformation;
 
 /**
@@ -111,10 +114,25 @@ public class MainFragment extends Fragment {
     private void openAddRequirementAct() {
         Intent addRequIntent = new Intent(getContext(),
                 AddRequirementActivity.class);
-        startActivity(addRequIntent);
+        startActivityForResult(addRequIntent, Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT);
     }
 
     public boolean isItemOpen() {
         return isItemOpen;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT) {
+
+            if (resultCode == Config.TAG_ADD_REQUIREMENT_RETURN) {
+                if (data != null) {
+                    LogContent logContent = (com.juhezi.coderslife.entry.LogContent)
+                            data.getSerializableExtra(Config.ADD_REQUIREMENT_LOG_CONTENT);
+                    Log.i(TAG, "ADD");
+                    mAdapter.addLogContent(logContent);
+                }
+            }
+        }
     }
 }

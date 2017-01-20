@@ -8,6 +8,7 @@ import android.support.annotation.BoolRes;
 import android.support.annotation.IntDef;
 import android.util.Log;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
  * 日志内容
  * Created by qiao1 on 2017/1/12.
  */
-public class LogContent extends BaseObservable {
+public class LogContent extends BaseObservable implements Serializable {
 
     public static final int TYPE_REQUIREMENT = 0x000;   //类型为需求
     public static final int TYPE_DEBUG = 0x001;     //类型为Debug

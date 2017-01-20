@@ -45,16 +45,36 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/btn_act_add_requirement_ok"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@color/colorAccent"
-            android:text="@string/ok"
-            android:textColor="@android:color/white" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+            <Button
+                android:id="@+id/btn_act_add_requirement_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="@string/ok"
+                android:textColor="@android:color/white"
+                android:visibility="visible" />
+
+            <io.codetail.widget.RevealFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/pb_act_add_requirement"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            </io.codetail.widget.RevealFrameLayout>
+        </FrameLayout>
     </LinearLayout>
 
 </layout>
