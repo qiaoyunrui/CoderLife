@@ -2,6 +2,7 @@ package com.juhezi.coderslife.model.local;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -10,6 +11,9 @@ import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by qiao1 on 2017/1/18.
  */
@@ -17,7 +21,6 @@ public class LocalResponse implements Response {
     private static String TAG = "LocalResponse";
 
     private Context mContext;
-    private Thread thread = new Thread();
 
     private static LocalResponse sInstance;
     private DBHelper dbHelper;
@@ -58,4 +61,36 @@ public class LocalResponse implements Response {
             }
         }.start();
     }
+
+    @Override
+    public void getTodayAllLogs(final String time, final Action1<List<LogContent>> action) {
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "SELECT * FROM " +
+                        DBContract.LOG_CONTENT_TABLE_NAME +
+                        " WHERE " + DBContract.LOGCONTENT_TIME +
+                        " = '" + time + "'";
+                List<LogContent> list;
+                SQLiteDatabase database = dbHelper.getWritableDatabase();
+                Cursor cursor = database.rawQuery(sql, null);
+                list = cursor2LogContent(cursor);
+                action.onAction(list);
+            }
+        }.start();
+
+    }
+
+    private static List<LogContent> cursor2LogContent(Cursor cursor) {
+        List<LogContent> list = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            list.add(new LogContent(cursor.getString(2),
+                    cursor.getInt(3),
+                    Boolean.parseBoolean(cursor.getString(4)),
+                    cursor.getString(1)));
+        }
+        cursor.close();
+        return list;
+    }
+
 }

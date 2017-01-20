@@ -7,6 +7,8 @@ import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
 
+import java.util.List;
+
 /**
  * Created by qiao1 on 2017/1/18.
  */
@@ -31,5 +33,10 @@ public class RemoteResponse implements Response {
     @Override
     public void addLogContent(LogContent logContent, Action1<Integer> result) {
         result.onAction(Config.RESULT_CODE_ERROR);
+    }
+
+    @Override
+    public void getTodayAllLogs(String time, Action1<List<LogContent>> action) {
+
     }
 }

@@ -75,4 +75,11 @@ public class LogContent extends BaseObservable implements Serializable {
     public String getTime() {
         return time;
     }
+
+    public LogContent(String content, int contentType, boolean state, String time) {
+        this.content = content;
+        this.contentType = contentType;
+        this.state = state;
+        this.time = time;
+    }
 }
