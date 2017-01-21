@@ -1,10 +1,9 @@
-package com.juhezi.coderslife.function.add_requirement;
+package com.juhezi.coderslife.function.add_log;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.juhezi.coderslife.BaseViewModel;
-import com.juhezi.coderslife.databinding.ActAddRequirementBinding;
+import com.juhezi.coderslife.databinding.ActAddLogBinding;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.entry.Title;
 import com.juhezi.coderslife.tools.Action1;
@@ -12,11 +11,11 @@ import com.juhezi.coderslife.tools.Action1;
 /**
  * Created by qiao1 on 2017/1/18.
  */
-public class AddRequViewModel extends
-        BaseViewModel<ActAddRequirementBinding> {
-    private static String TAG = "AddRequViewModel";
+public class AddLogViewModel extends
+        BaseViewModel<ActAddLogBinding> {
+    private static String TAG = "AddLogViewModel";
 
-    public AddRequViewModel(ActAddRequirementBinding binding, Context context) {
+    public AddLogViewModel(ActAddLogBinding binding, Context context) {
         super(binding, context);
     }
 

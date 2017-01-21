@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.juhezi.coderslife.function.add_requirement.AddRequirementActivity" />
+        <activity android:name="com.juhezi.coderslife.function.add_log.AddLogActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.juhezi.coderslife.function.add_requirement;
+package com.juhezi.coderslife.function.add_log;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
-import com.juhezi.coderslife.databinding.ActAddRequirementBinding;
+import com.juhezi.coderslife.databinding.ActAddLogBinding;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
 import com.konifar.fab_transformation.FabTransformation;
@@ -23,11 +23,11 @@ import com.konifar.fab_transformation.FabTransformation;
 /**
  * Created by qiao1 on 2017/1/16.
  */
-public class AddRequirementActivity extends AppCompatActivity {
+public class AddLogActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddRequirementActivity";
-    private ActAddRequirementBinding mBinding;
-    private AddRequViewModel viewModel;
+    private static final String TAG = "AddLogActivity";
+    private ActAddLogBinding mBinding;
+    private AddLogViewModel viewModel;
     private Toolbar mToolbar;
     private ActionBar mActionBar;
     private TextInputLayout mTilWrapper;
@@ -37,8 +37,8 @@ public class AddRequirementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.act_add_requirement);
-        viewModel = new AddRequViewModel(mBinding, this);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.act_add_log);
+        viewModel = new AddLogViewModel(mBinding, this);
         initActionBar();
         initView();
     }
@@ -65,7 +65,7 @@ public class AddRequirementActivity extends AppCompatActivity {
                     viewModel.submitLogContent(new Action1<Integer>() {
                         @Override
                         public void onAction(final Integer integer) {
-                            AddRequirementActivity.this.runOnUiThread(new Runnable() {
+                            AddLogActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     if (integer == Config.RESULT_CODE_OK) {

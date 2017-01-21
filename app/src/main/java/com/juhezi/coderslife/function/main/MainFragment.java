@@ -11,7 +11,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,7 @@ import android.view.ViewGroup;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
 import com.juhezi.coderslife.entry.LogContent;
-import com.juhezi.coderslife.function.add_requirement.AddRequirementActivity;
+import com.juhezi.coderslife.function.add_log.AddLogActivity;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.model.ResponseImpl;
 import com.juhezi.coderslife.tools.Action;
@@ -124,7 +123,7 @@ public class MainFragment extends Fragment {
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openItem();
+                openAddLogAct();
             }
         });
         mVOverlay.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +138,7 @@ public class MainFragment extends Fragment {
                 closeItem();
                 switch (item.getItemId()) {
                     case R.id.item_nav_add_main_requirement:
-                        openAddRequirementAct();
+                        openAddLogAct();
                 }
                 return false;
             }
@@ -177,9 +176,9 @@ public class MainFragment extends Fragment {
         isItemOpen = false;
     }
 
-    private void openAddRequirementAct() {
+    private void openAddLogAct() {
         Intent addRequIntent = new Intent(getContext(),
-                AddRequirementActivity.class);
+                AddLogActivity.class);
         startActivityForResult(addRequIntent, Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT);
     }
 

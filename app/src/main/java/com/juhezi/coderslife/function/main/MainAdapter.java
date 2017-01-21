@@ -7,11 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.juhezi.coderslife.R;
-import com.juhezi.coderslife.databinding.ItemRequirementBinding;
+import com.juhezi.coderslife.databinding.ItemLogBinding;
 import com.juhezi.coderslife.entry.LogContent;
 
 import java.util.ArrayList;
@@ -37,10 +36,10 @@ public class MainAdapter extends
         switch (viewType) {
             case LogContent.TYPE_REQUIREMENT:
                 View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_requirement,
+                        .inflate(R.layout.item_log,
                                 parent,
                                 false);
-                ItemRequirementBinding binding = DataBindingUtil.bind(itemView);
+                ItemLogBinding binding = DataBindingUtil.bind(itemView);
                 return new RequirementItemHolder
                         (itemView, binding);
             default:
@@ -72,16 +71,16 @@ public class MainAdapter extends
     }
 
     /**
-     * 对应布局：R.layout.item_requirement
+     * 对应布局：R.layout.item_log
      */
     private class RequirementItemHolder extends RecyclerView.ViewHolder {
 
         private CheckBox checkBox;
         private ImageView editButton;
-        private ItemRequirementBinding binding;
+        private ItemLogBinding binding;
 
         public RequirementItemHolder(View itemView,
-                                     ItemRequirementBinding binding) {
+                                     ItemLogBinding binding) {
             super(itemView);
             this.binding = binding;
             checkBox = binding.cbSelectItemRequirement;
