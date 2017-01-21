@@ -39,32 +39,41 @@ public class MainAdapter extends
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case LogContent.TYPE_REQUIREMENT:
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_log,
-                                parent,
-                                false);
-                ItemLogBinding binding = DataBindingUtil.bind(itemView);
-                return new RequirementItemHolder
-                        (itemView, binding);
-            default:
-                return null;
-        }
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_log,
+                        parent,
+                        false);
+        ItemLogBinding binding = DataBindingUtil.bind(itemView);
+        return new LogItemHolder(itemView, binding);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
+        ((LogItemHolder) holder).binding
+                .setLogContent(logContents.get(position));
+        ((LogItemHolder) holder).binding
+                .executePendingBindings();
+        int colorRes;
+        switch (logContents.get(position).getContentType()) {
             case LogContent.TYPE_REQUIREMENT:
-                Log.i(TAG, "onBindViewHolder: " + ((RequirementItemHolder) holder).binding);
-                ((RequirementItemHolder) holder).binding
-                        .setLogContent(logContents.get(position));
-                ((RequirementItemHolder) holder).binding
-                        .executePendingBindings();
+                colorRes = R.color.requirement_color;
                 break;
+            case LogContent.TYPE_BUG:
+                colorRes = R.color.bug_color;
+                break;
+            case LogContent.TYPE_VERSION:
+                colorRes = R.color.version_color;
+                break;
+            case LogContent.TYPE_ERROR:
+                colorRes = R.color.other_color;
+                break;
+            default:
+                colorRes = R.color.other_color;
         }
+        ((LogItemHolder) holder).mImgTag.setBackgroundColor(holder.itemView.getResources().getColor(colorRes));
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -78,6 +87,11 @@ public class MainAdapter extends
         return logContents.size();
     }
 
+    public void addLogContent(LogContent logContent) {
+        logContents.add(logContent);
+        notifyItemInserted(logContents.size() - 1);
+    }
+
     @Override
     public int getItemViewType(int position) {
         return logContents.get(position).getContentType();
@@ -86,24 +100,22 @@ public class MainAdapter extends
     /**
      * 对应布局：R.layout.item_log
      */
-    private class RequirementItemHolder extends RecyclerView.ViewHolder {
-
+    private class LogItemHolder extends RecyclerView.ViewHolder {
         private CheckBox checkBox;
         private ImageView editButton;
+        private ImageView mImgTag;
+
         private ItemLogBinding binding;
 
-        public RequirementItemHolder(View itemView,
-                                     ItemLogBinding binding) {
+        public LogItemHolder(View itemView,
+                             ItemLogBinding binding) {
             super(itemView);
             this.binding = binding;
             checkBox = binding.cbSelectItemRequirement;
             editButton = binding.imgEditItemRequirement;
+            mImgTag = binding.imgItemLogFlag;
         }
-    }
 
-    public void addLogContent(LogContent logContent) {
-        logContents.add(logContent);
-        notifyItemInserted(logContents.size() - 1);
     }
 
 }

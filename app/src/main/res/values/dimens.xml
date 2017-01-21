@@ -10,4 +10,6 @@
     <dimen name="img_item_log_type_icon_size">25dp</dimen>
     <dimen name="tv_item_log_type_margin">10dp</dimen>
     <dimen name="img_frag_main_empty_icon_size">100dp</dimen>
+    <dimen name="item_log_margin">8dp</dimen>
+    <dimen name="img_item_log_flag_width">10dp</dimen>
 </resources>
