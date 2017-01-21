@@ -1,10 +1,8 @@
 package com.juhezi.coderslife.function.add_log;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 import com.juhezi.coderslife.R;
@@ -44,7 +42,7 @@ public class LogTypeSpinnerAdapter extends BaseAdapter {
         binding = ItemLogTypeBinding.bind(itemView);
         binding.setLogTypeEntry(list.get(position));
         binding.executePendingBindings();
-        if (list.get(position).getType() == LogTypeEntry.TYPE_RES) {    //资源图片
+        if (list.get(position).getPicType() == LogTypeEntry.TYPE_RES) {    //资源图片
             binding.imgItemLogTypeIcon.setImageResource(list.get(position).getResId());
         } else {    //网络图片
 

@@ -24,10 +24,16 @@ public class MainAdapter extends
     private static String TAG = "MainAdapter";
 
     private List<LogContent> logContents = new ArrayList<>();
+    private View mEmptyView;
+
+    public void setEmptyView(View emptyView) {
+        this.mEmptyView = emptyView;
+    }
 
     public void setLogContents(List<LogContent> logContents) {
         if (logContents != null) {
             this.logContents = logContents;
+            notifyDataSetChanged();
         }
     }
 
@@ -62,6 +68,13 @@ public class MainAdapter extends
 
     @Override
     public int getItemCount() {
+        if (mEmptyView != null) {
+            if (logContents.size() == 0) {
+                mEmptyView.setVisibility(View.VISIBLE);
+            } else {
+                mEmptyView.setVisibility(View.INVISIBLE);
+            }
+        }
         return logContents.size();
     }
 

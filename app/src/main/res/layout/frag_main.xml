@@ -3,10 +3,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,6 +63,31 @@
             </android.support.v7.widget.CardView>
 
         </io.codetail.widget.RevealFrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_frag_main_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/img_frag_main_empty_icon"
+                android:layout_width="@dimen/img_frag_main_empty_icon_size"
+                android:layout_height="@dimen/img_frag_main_empty_icon_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_empty" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_frag_main_empty_icon"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:text="@string/today_have_no_logs"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/item_requirement_text_size" />
+
+        </RelativeLayout>
 
     </FrameLayout>
 

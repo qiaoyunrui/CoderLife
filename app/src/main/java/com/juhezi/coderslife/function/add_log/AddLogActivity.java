@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ActAddLogBinding;
+import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.entry.LogTypeEntry;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
@@ -57,9 +58,9 @@ public class AddLogActivity extends AppCompatActivity {
      * 初始化日志类型
      */
     private void initLogType() {
-        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.requirement), R.drawable.ic_requirement));
-        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.bug), R.drawable.ic_bug));
-        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.version), R.drawable.ic_version));
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.requirement), R.drawable.ic_requirement, LogContent.TYPE_REQUIREMENT));
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.bug), R.drawable.ic_bug, LogContent.TYPE_BUG));
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.version), R.drawable.ic_version, LogContent.TYPE_VERSION));
         mAdapter.setList(mLogTypeEntries);
     }
 
@@ -84,26 +85,28 @@ public class AddLogActivity extends AppCompatActivity {
                 if (checkContentValidity()) {
                     FabTransformation.with(mBtnAdd)
                             .transformTo(mProgressBar);
+
                     //插入数据，回到上一个界面
-                    viewModel.submitLogContent(new Action1<Integer>() {
-                        @Override
-                        public void onAction(final Integer integer) {
-                            AddLogActivity.this.runOnUiThread(new Runnable() {
+                    viewModel.submitLogContent(((LogTypeEntry) mSpinner.getSelectedItem()).getLogType(),
+                            new Action1<Integer>() {
                                 @Override
-                                public void run() {
-                                    if (integer == Config.RESULT_CODE_OK) {
-                                        showToast("添加日志成功");
-                                        Intent intent = new Intent();
-                                        intent.putExtra(Config.ADD_REQUIREMENT_LOG_CONTENT, mBinding.getLogContent());
-                                        setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
-                                        finish();
-                                    } else {
-                                        showToast("添加日志失败");
-                                    }
+                                public void onAction(final Integer integer) {
+                                    AddLogActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (integer == Config.RESULT_CODE_OK) {
+                                                showToast("添加日志成功");
+                                                Intent intent = new Intent();
+                                                intent.putExtra(Config.ADD_REQUIREMENT_LOG_CONTENT, mBinding.getLogContent());
+                                                setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
+                                                finish();
+                                            } else {
+                                                showToast("添加日志失败");
+                                            }
+                                        }
+                                    });
                                 }
                             });
-                        }
-                    });
                 } else {
                     showToast("日志无法添加");
                 }

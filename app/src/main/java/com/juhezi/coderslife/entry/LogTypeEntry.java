@@ -17,21 +17,24 @@ public class LogTypeEntry extends BaseObservable {
 
     private String content;
     private int resId;  //资源图片
-    private int type;   //图片类型
-
+    private int picType;   //图片类型
     private String url; //网络图片
 
-    public LogTypeEntry(String content, int resId) {
+    @LogContent.CONTENT_TYPE
+    private int logType;    //日志类型
+
+    public LogTypeEntry(String content, int resId, @LogContent.CONTENT_TYPE int logType) {
         this.content = content;
         this.resId = resId;
-        type = TYPE_RES;
+        this.logType = logType;
+        picType = TYPE_RES;
     }
 
     public LogTypeEntry(String content, String url) {
         this.content = content;
         this.url = url;
         resId = R.drawable.ic_error;
-        type = TYPE_URL;
+        picType = TYPE_URL;
     }
 
     @IntDef({TYPE_RES, TYPE_URL})
@@ -52,12 +55,12 @@ public class LogTypeEntry extends BaseObservable {
     }
 
     @PIC_TYPE
-    public int getType() {
-        return type;
+    public int getPicType() {
+        return picType;
     }
 
-    public void setType(@PIC_TYPE int type) {
-        this.type = type;
+    public void setPicType(@PIC_TYPE int picType) {
+        this.picType = picType;
     }
 
     public String getUrl() {
@@ -70,5 +73,14 @@ public class LogTypeEntry extends BaseObservable {
 
     public String getContent() {
         return content;
+    }
+
+    @LogContent.CONTENT_TYPE
+    public int getLogType() {
+        return logType;
+    }
+
+    public void setLogType(@LogContent.CONTENT_TYPE int logType) {
+        this.logType = logType;
     }
 }

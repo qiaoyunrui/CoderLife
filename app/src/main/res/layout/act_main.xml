@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@{title.content}"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/act_main_title_size" />
 
             </android.support.v7.widget.Toolbar>

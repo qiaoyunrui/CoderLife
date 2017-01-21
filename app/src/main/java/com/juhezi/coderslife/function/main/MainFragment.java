@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
@@ -56,6 +57,7 @@ public class MainFragment extends Fragment {
     private View mVOverlay;
     private RecyclerView mRvList;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RelativeLayout mEmptyView;
 
     private Response response;
 
@@ -118,6 +120,7 @@ public class MainFragment extends Fragment {
         mVOverlay = binding.vFragMainOverlay;
         mRvList = binding.rvListFragMain;
         mSwipeRefreshLayout = binding.srlRefreshFragMain;
+        mEmptyView = binding.rlFragMainEmpty;
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +162,7 @@ public class MainFragment extends Fragment {
     private void initRecyclerView() {
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.setAdapter(mAdapter);
+        mAdapter.setEmptyView(mEmptyView);
     }
 
     private void openItem() {

@@ -7,4 +7,5 @@
     <string name="version">版本</string>
     <string name="input_requirement_content">输入要完成的需求内容</string>
     <string name="ok">确定</string>
+    <string name="today_have_no_logs">今天还没有日志呢</string>
 </resources>

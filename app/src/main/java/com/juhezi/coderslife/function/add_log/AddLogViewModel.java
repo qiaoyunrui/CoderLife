@@ -26,8 +26,10 @@ public class AddLogViewModel extends
                 new LogContent("", LogContent.TYPE_REQUIREMENT));
     }
 
-    protected void submitLogContent(Action1<Integer> action) {
-        mResponse.addLogContent(binding.getLogContent(), action);
+    protected void submitLogContent(@LogContent.CONTENT_TYPE int contentType, Action1<Integer> action) {
+        LogContent logContent = binding.getLogContent();
+        logContent.setContentType(contentType);
+        mResponse.addLogContent(logContent, action);
     }
 
 }

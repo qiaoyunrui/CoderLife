@@ -2,11 +2,7 @@ package com.juhezi.coderslife.entry;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.databinding.BindingMethod;
-import android.databinding.BindingMethods;
-import android.support.annotation.BoolRes;
 import android.support.annotation.IntDef;
-import android.util.Log;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -19,8 +15,9 @@ import java.util.Date;
 public class LogContent extends BaseObservable implements Serializable {
 
     public static final int TYPE_REQUIREMENT = 0x000;   //类型为需求
-    public static final int TYPE_DEBUG = 0x001;     //类型为Debug
+    public static final int TYPE_BUG = 0x001;     //类型为Debug
     public static final int TYPE_VERSION = 0x002;   //类型为发布版本
+    public static final int TYPE_ERROR = 0x003;     //错误类型
 
     public static final boolean STATE_COMPLETED = true;    //完成状态
     public static final boolean STATE_UNCOMPLETED = false;  //未完成状态
@@ -30,7 +27,7 @@ public class LogContent extends BaseObservable implements Serializable {
     private boolean state;  //状态
     private String time;    //时间
 
-    @IntDef({TYPE_REQUIREMENT, TYPE_DEBUG, TYPE_VERSION})
+    @IntDef({TYPE_REQUIREMENT, TYPE_BUG, TYPE_VERSION, TYPE_ERROR})
     public @interface CONTENT_TYPE {
     }
 
