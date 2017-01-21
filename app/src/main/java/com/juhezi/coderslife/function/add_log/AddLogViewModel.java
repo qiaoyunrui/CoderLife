@@ -21,7 +21,7 @@ public class AddLogViewModel extends
 
     @Override
     public void initData() {
-        binding.setTitle(new Title(Title.ADD_REQUIREMENT));
+        binding.setTitle(new Title(Title.ADD));
         binding.setLogContent(
                 new LogContent("", LogContent.TYPE_REQUIREMENT));
     }

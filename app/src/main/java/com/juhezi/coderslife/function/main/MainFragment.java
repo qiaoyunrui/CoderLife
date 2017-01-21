@@ -87,7 +87,6 @@ public class MainFragment extends Fragment {
         });
     }
 
-
     /**
      * 显示今日所有日志
      *

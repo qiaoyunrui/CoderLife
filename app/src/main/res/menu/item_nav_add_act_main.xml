@@ -8,7 +8,7 @@
 
     <item
         android:icon="@drawable/ic_bug"
-        android:title="@string/debug" />
+        android:title="@string/bug" />
 
     <item
         android:icon="@drawable/ic_version"

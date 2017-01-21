@@ -12,13 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ActAddLogBinding;
+import com.juhezi.coderslife.entry.LogTypeEntry;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
 import com.konifar.fab_transformation.FabTransformation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qiao1 on 2017/1/16.
@@ -33,6 +38,10 @@ public class AddLogActivity extends AppCompatActivity {
     private TextInputLayout mTilWrapper;
     private Button mBtnAdd;
     private ProgressBar mProgressBar;
+    private Spinner mSpinner;
+    private LogTypeSpinnerAdapter mAdapter;
+    private List<LogTypeEntry> mLogTypeEntries = new ArrayList<>();
+    ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +50,17 @@ public class AddLogActivity extends AppCompatActivity {
         viewModel = new AddLogViewModel(mBinding, this);
         initActionBar();
         initView();
+        initLogType();
+    }
+
+    /**
+     * 初始化日志类型
+     */
+    private void initLogType() {
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.requirement), R.drawable.ic_requirement));
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.bug), R.drawable.ic_bug));
+        mLogTypeEntries.add(new LogTypeEntry(getString(R.string.version), R.drawable.ic_version));
+        mAdapter.setList(mLogTypeEntries);
     }
 
     private void initActionBar() {
@@ -55,6 +75,9 @@ public class AddLogActivity extends AppCompatActivity {
         mBtnAdd = (Button) findViewById(R.id.btn_act_add_requirement_ok);
         mTilWrapper = (TextInputLayout) findViewById(R.id.til_content_wrapper);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_act_add_requirement);
+        mSpinner = (Spinner) findViewById(R.id.spinner_act_add_log);
+        mAdapter = new LogTypeSpinnerAdapter();
+        mSpinner.setAdapter(mAdapter);
         mBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

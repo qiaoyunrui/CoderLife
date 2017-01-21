@@ -10,4 +10,6 @@
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="spinner" parent="ThemeOverlay.AppCompat.Dark" />
+
 </resources>
