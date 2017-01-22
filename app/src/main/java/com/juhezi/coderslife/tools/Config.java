@@ -13,6 +13,8 @@ public class Config {
 
     public static final String ADD_REQUIREMENT_LOG_CONTENT = "addRequirementLogContent";
 
+    public static final String SHOW_LOG_CONTENT_INFO = "showLogContentInfo";
+
     public static final int TAG_ADD_REQUIREMENT_RETURN = 0x100;
 
     public static final int TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT = 0x101;

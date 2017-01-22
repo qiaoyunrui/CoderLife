@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.juhezi.coderslife.function.add_log.AddLogActivity" />
+        <activity android:name=".function.LogInfo.LogInfoActivity" />
     </application>
 
 </manifest>

@@ -39,6 +39,7 @@
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     android:layout_toLeftOf="@+id/img_edit_item_requirement"
                     android:checked="@={logContent.state}"
+                    android:singleLine="true"
                     android:text="@{logContent.content}"
                     android:textSize="@dimen/item_requirement_text_size" />
 
@@ -52,7 +53,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:background="?selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:src="@drawable/ic_edit" />
+                    android:src="@drawable/ic_more" />
 
             </RelativeLayout>
 

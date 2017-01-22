@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.LogInfo.LogInfoActivity;
 import com.juhezi.coderslife.function.add_log.AddLogActivity;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.model.ResponseImpl;
@@ -163,6 +164,12 @@ public class MainFragment extends Fragment {
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.setAdapter(mAdapter);
         mAdapter.setEmptyView(mEmptyView);
+        mAdapter.setLogItemClickListener(new Action1<LogContent>() {
+            @Override
+            public void onAction(LogContent logContent) {
+                openLogInfoAct(logContent);
+            }
+        });
     }
 
     private void openItem() {
@@ -183,6 +190,12 @@ public class MainFragment extends Fragment {
         Intent addRequIntent = new Intent(getContext(),
                 AddLogActivity.class);
         startActivityForResult(addRequIntent, Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT);
+    }
+
+    private void openLogInfoAct(LogContent logContent) {
+        Intent intent = new Intent(getContext(), LogInfoActivity.class);
+        intent.putExtra(Config.SHOW_LOG_CONTENT_INFO, logContent);
+        startActivity(intent);
     }
 
     public boolean isItemOpen() {

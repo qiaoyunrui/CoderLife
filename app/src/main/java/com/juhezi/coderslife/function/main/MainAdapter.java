@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ItemLogBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.tools.Action1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class MainAdapter extends
 
     private List<LogContent> logContents = new ArrayList<>();
     private View mEmptyView;
+
+    private Action1<LogContent> logItemClickListener;
 
     public void setEmptyView(View emptyView) {
         this.mEmptyView = emptyView;
@@ -48,7 +51,7 @@ public class MainAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         ((LogItemHolder) holder).binding
                 .setLogContent(logContents.get(position));
         ((LogItemHolder) holder).binding
@@ -71,9 +74,15 @@ public class MainAdapter extends
                 colorRes = R.color.other_color;
         }
         ((LogItemHolder) holder).mImgTag.setBackgroundColor(holder.itemView.getResources().getColor(colorRes));
-
+        ((LogItemHolder) holder).editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (logItemClickListener != null) {
+                    logItemClickListener.onAction(logContents.get(position));
+                }
+            }
+        });
     }
-
 
     @Override
     public int getItemCount() {
@@ -115,7 +124,9 @@ public class MainAdapter extends
             editButton = binding.imgEditItemRequirement;
             mImgTag = binding.imgItemLogFlag;
         }
-
     }
 
+    public void setLogItemClickListener(Action1<LogContent> logItemClickListener) {
+        this.logItemClickListener = logItemClickListener;
+    }
 }
