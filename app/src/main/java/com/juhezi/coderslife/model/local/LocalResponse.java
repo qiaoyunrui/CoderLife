@@ -112,6 +112,29 @@ public class LocalResponse implements Response {
         }.start();
     }
 
+    @Override
+    public void removeLog(final String id, final Action1<Integer> action) {
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "DELETE FROM " + DBContract.LOG_CONTENT_TABLE_NAME
+                        + " WHERE " + DBContract.LOGCONTENT_ID
+                        + " = '" + id
+                        + "'";
+                Log.i(TAG, "run: " + sql);
+                try {
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    db.execSQL(sql);
+                    db.close();
+                    action.onAction(Config.RESULT_CODE_OK);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    action.onAction(Config.RESULT_CODE_ERROR);
+                }
+            }
+        }.start();
+    }
+
     private static List<LogContent> cursor2LogContent(Cursor cursor) {
         List<LogContent> list = new ArrayList<>();
         while (cursor.moveToNext()) {

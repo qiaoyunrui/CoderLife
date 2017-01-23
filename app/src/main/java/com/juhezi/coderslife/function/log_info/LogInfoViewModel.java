@@ -24,12 +24,16 @@ public class LogInfoViewModel extends BaseViewModel<ActLogInfoBinding> {
 
     }
 
-    protected void saveChanges(Action1<Integer> action1) {
+    protected void save(Action1<Integer> action1) {
         mResponse.updateLog(binding.getLogContent(), action1);
     }
 
     protected LogContent getLogContent() {
         return binding.getLogContent();
+    }
+
+    protected void delete(Action1<Integer> action1) {
+        mResponse.removeLog(binding.getLogContent().getId(), action1);
     }
 
 }

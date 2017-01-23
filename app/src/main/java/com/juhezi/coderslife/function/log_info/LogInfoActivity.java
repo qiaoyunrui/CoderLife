@@ -1,10 +1,12 @@
 package com.juhezi.coderslife.function.log_info;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -56,7 +58,7 @@ public class LogInfoActivity extends AppCompatActivity {
                 }
                 showProgressBar();
                 //保存修改
-                viewModel.saveChanges(new Action1<Integer>() {
+                viewModel.save(new Action1<Integer>() {
                     @Override
                     public void onAction(final Integer integer) {
                         runOnUiThread(new Runnable() {
@@ -120,8 +122,7 @@ public class LogInfoActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_log_info_delete:
-                showProgressBar();
-                //删除本条日志
+                showConfirmDeleteDialog();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -162,6 +163,38 @@ public class LogInfoActivity extends AppCompatActivity {
      */
     private boolean checkContentValidity() {
         return mEtContent.getText().toString().trim().length() != 0;
+    }
+
+    /**
+     * 显示确认删除对话框
+     */
+    private void showConfirmDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.confirm_delete_this_log))
+                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showProgressBar();
+                        viewModel.delete(new Action1<Integer>() {
+                            @Override
+                            public void onAction(final Integer integer) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (integer == Config.RESULT_CODE_OK) {
+                                            setResult(Config.TAG_LOG_INFO_RETURN_DELETE);
+                                            finish();
+                                        } else {
+                                            hideProgressBar();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        //删除本条日志
+                    }
+                }).setNegativeButton(R.string.CANCEL, null)
+                .create().show();
     }
 
 }

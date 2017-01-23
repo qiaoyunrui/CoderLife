@@ -56,4 +56,9 @@ public class ResponseImpl implements Response {
         mLocalResponse.updateLog(logContent, action1);
     }
 
+    @Override
+    public void removeLog(String id, Action1<Integer> action) {
+        mLocalResponse.removeLog(id, action);
+    }
+
 }

@@ -231,9 +231,15 @@ public class MainFragment extends Fragment {
             case Config.TAG_MAIN_FRAGMENT_TO_LOG_INFO_ACT: {
                 if (resultCode == Config.TAG_LOG_INFO_RETURN_SAVE) {
                     if (data != null) {
-                        LogContent logContent = (LogContent) data.getSerializableExtra(Config.LOG_SAVED);
-                        Log.i(TAG, "onActivityResult: " + logContent);
-                        mAdapter.updateLogContent(currentItemPosition, logContent);
+                        if (currentItemPosition != -1) {
+                            LogContent logContent = (LogContent) data.getSerializableExtra(Config.LOG_SAVED);
+                            mAdapter.updateLogContent(currentItemPosition, logContent);
+                        }
+                    }
+                }
+                if (resultCode == Config.TAG_LOG_INFO_RETURN_DELETE) {
+                    if (currentItemPosition != -1) {
+                        mAdapter.deleteLogContent(currentItemPosition);
                     }
                 }
                 break;

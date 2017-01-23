@@ -15,4 +15,7 @@
     <string name="save_change_success">保存修改成功</string>
     <string name="save_change_fail">保存修改失败</string>
     <string name="content_can_not_be_empty">内容不能为空</string>
+    <string name="confirm_delete_this_log">确认删除这条日志？</string>
+    <string name="OK">确认</string>
+    <string name="CANCEL">取消</string>
 </resources>

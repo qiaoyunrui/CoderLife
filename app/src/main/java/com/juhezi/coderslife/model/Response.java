@@ -33,4 +33,12 @@ public interface Response {
      */
     void updateLog(LogContent logContent, Action1<Integer> action1);
 
+    /**
+     * 删除某条记录
+     *
+     * @param id
+     * @param action
+     */
+    void removeLog(String id, Action1<Integer> action);
+
 }

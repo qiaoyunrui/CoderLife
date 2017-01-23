@@ -44,4 +44,9 @@ public class RemoteResponse implements Response {
     public void updateLog(LogContent logContent, Action1<Integer> action1) {
 
     }
+
+    @Override
+    public void removeLog(String id, Action1<Integer> action) {
+
+    }
 }

@@ -52,7 +52,7 @@ public class MainAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ((LogItemHolder) holder).binding
                 .setLogContent(logContents.get(position));
         ((LogItemHolder) holder).binding
@@ -79,7 +79,7 @@ public class MainAdapter extends
             @Override
             public void onClick(View v) {
                 if (logItemClickListener != null) {
-                    logItemClickListener.onAction(logContents.get(position), position);
+                    logItemClickListener.onAction(logContents.get(holder.getAdapterPosition()), holder.getAdapterPosition());
                 }
             }
         });
@@ -105,6 +105,11 @@ public class MainAdapter extends
     public void updateLogContent(int position, LogContent logContent) {
         logContents.set(position, logContent);
         notifyItemChanged(position);
+    }
+
+    public void deleteLogContent(int position) {
+        logContents.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
