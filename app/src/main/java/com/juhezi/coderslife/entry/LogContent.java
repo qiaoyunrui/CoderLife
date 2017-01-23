@@ -7,6 +7,7 @@ import android.support.annotation.IntDef;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 日志内容
@@ -26,16 +27,38 @@ public class LogContent extends BaseObservable implements Serializable {
     private int contentType;   //内容类型
     private boolean state;  //状态
     private String time;    //时间
+    private String id;
 
     @IntDef({TYPE_REQUIREMENT, TYPE_BUG, TYPE_VERSION, TYPE_ERROR})
     public @interface CONTENT_TYPE {
     }
 
     public LogContent(String content, int content_type) {
+        this(UUID.randomUUID().toString(), content, content_type);
+    }
+
+    public LogContent(String id, String content, int content_type) {
+        this.id = id;
         this.content = content;
         this.contentType = content_type;
         this.time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());  //获取当前时间
         this.state = STATE_UNCOMPLETED; //初始为未完成状态
+    }
+
+    public LogContent(String content, int contentType, boolean state, String time) {
+        this(UUID.randomUUID().toString(), content, contentType, state, time);
+    }
+
+    public LogContent(String id, String content, int contentType, boolean state, String time) {
+        this.id = id;
+        this.content = content;
+        this.contentType = contentType;
+        this.state = state;
+        this.time = time;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Bindable
@@ -73,10 +96,14 @@ public class LogContent extends BaseObservable implements Serializable {
         return time;
     }
 
-    public LogContent(String content, int contentType, boolean state, String time) {
-        this.content = content;
-        this.contentType = contentType;
-        this.state = state;
-        this.time = time;
+    @Override
+    public String toString() {
+        return "LogContent{" +
+                "content='" + content + '\'' +
+                ", contentType=" + contentType +
+                ", state=" + state +
+                ", time='" + time + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

@@ -19,15 +19,51 @@
             android:id="@+id/tb_act_log_info"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            android:theme="@style/Toolbar"
             android:title="@{logContent.time}" />
 
-        <TextView
+        <EditText
+            android:id="@+id/et_act_log_info_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="@{logContent.content}"
+            android:background="@null"
+            android:selectAllOnFocus="true"
+            android:text="@={logContent.content}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/act_main_title_size" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:checked="@={logContent.state}"
+            android:text="@string/is_completed" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ProgressBar
+                android:id="@+id/pb_act_log_info"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_act_log_info_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/save"
+                android:textColor="@android:color/white" />
+        </FrameLayout>
+
 
     </LinearLayout>
 

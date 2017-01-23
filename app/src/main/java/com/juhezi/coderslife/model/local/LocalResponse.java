@@ -9,6 +9,7 @@ import android.util.Log;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.coderslife.tools.BoolUtil;
 import com.juhezi.coderslife.tools.Config;
 
 import java.util.ArrayList;
@@ -47,17 +48,17 @@ public class LocalResponse implements Response {
             @Override
             public void run() {
                 SQLiteDatabase database = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(DBContract.LOGCONTENT_TIME, logContent.getTime());
-                values.put(DBContract.LOGCONTENT_CONTENT, logContent.getContent());
-                values.put(DBContract.LOGCONTENT_STATE, logContent.getState());
-                values.put(DBContract.LOGCONTENT_TYPE, logContent.getContentType());
-                if (database.insert(DBContract.LOG_CONTENT_TABLE_NAME, null, values) != -1) {
-                    action.onAction(Config.RESULT_CODE_OK);
-                } else {
+                try {
+                    if (database.insert(DBContract.LOG_CONTENT_TABLE_NAME, null, createContentValues(logContent)) != -1) {
+                        action.onAction(Config.RESULT_CODE_OK);
+                    } else {
+                        action.onAction(Config.RESULT_CODE_ERROR);
+                    }
+                    database.close();
+                } catch (Exception e) {
                     action.onAction(Config.RESULT_CODE_ERROR);
                 }
-                database.close();
+
             }
         }.start();
     }
@@ -78,19 +79,67 @@ public class LocalResponse implements Response {
                 action.onAction(list);
             }
         }.start();
+    }
 
+    @Override
+    public void updateLog(final LogContent logContent, final Action1<Integer> action1) {
+        if (logContent == null)
+            return;
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+                    String sql = "UPDATE " + DBContract.LOG_CONTENT_TABLE_NAME
+                            + " SET " + DBContract.LOGCONTENT_CONTENT
+                            + " = '" + logContent.getContent()
+                            + "'," + DBContract.LOGCONTENT_TIME
+                            + " = '" + logContent.getTime()
+                            + "'," + DBContract.LOGCONTENT_TYPE
+                            + " = " + logContent.getContentType()
+                            + "," + DBContract.LOGCONTENT_STATE
+                            + " = " + BoolUtil.bool2Int(logContent.getState())
+                            + " WHERE " + DBContract.LOGCONTENT_ID + " = '"
+                            + logContent.getId() + "'";
+                    database.execSQL(sql);
+                    action1.onAction(Config.RESULT_CODE_OK);
+                    database.close();
+                } catch (Exception ex) {
+                    action1.onAction(Config.RESULT_CODE_ERROR);
+                }
+
+            }
+        }.start();
     }
 
     private static List<LogContent> cursor2LogContent(Cursor cursor) {
         List<LogContent> list = new ArrayList<>();
         while (cursor.moveToNext()) {
-            list.add(new LogContent(cursor.getString(2),
+            list.add(new LogContent(
+                    cursor.getString(0),
+                    cursor.getString(2),
                     cursor.getInt(3),
-                    Boolean.parseBoolean(cursor.getString(4)),
+                    BoolUtil.int2Bool(cursor.getInt(4)),
                     cursor.getString(1)));
         }
         cursor.close();
         return list;
+    }
+
+    /**
+     * 装载ContentValues
+     *
+     * @param logContent
+     * @return
+     */
+    private ContentValues createContentValues(LogContent logContent) {
+        ContentValues values = new ContentValues();
+        values.put(DBContract.LOGCONTENT_TIME, logContent.getTime());
+        values.put(DBContract.LOGCONTENT_CONTENT, logContent.getContent());
+        values.put(DBContract.LOGCONTENT_STATE, BoolUtil.bool2Int(logContent.getState()));
+        values.put(DBContract.LOGCONTENT_TYPE, logContent.getContentType());
+        values.put(DBContract.LOGCONTENT_ID, logContent.getId());
+        return values;
     }
 
 }

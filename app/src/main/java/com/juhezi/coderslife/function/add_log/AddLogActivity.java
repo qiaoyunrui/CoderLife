@@ -101,6 +101,8 @@ public class AddLogActivity extends AppCompatActivity {
                                                 setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
                                                 finish();
                                             } else {
+                                                FabTransformation.with(mBtnAdd)
+                                                        .transformFrom(mProgressBar);
                                                 showToast("添加日志失败");
                                             }
                                         }

@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +21,13 @@ import android.widget.RelativeLayout;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
 import com.juhezi.coderslife.entry.LogContent;
-import com.juhezi.coderslife.function.LogInfo.LogInfoActivity;
+import com.juhezi.coderslife.function.log_info.LogInfoActivity;
 import com.juhezi.coderslife.function.add_log.AddLogActivity;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.model.ResponseImpl;
 import com.juhezi.coderslife.tools.Action;
 import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.coderslife.tools.Action2;
 import com.juhezi.coderslife.tools.Config;
 import com.konifar.fab_transformation.FabTransformation;
 
@@ -38,6 +40,8 @@ import java.util.List;
  */
 public class MainFragment extends Fragment {
     private static String TAG = "MainFragment";
+
+    private int currentItemPosition = -1;   //记录当前点击的Item的位置
 
     public static MainFragment getInstance() {
         return Holder.sInstance;
@@ -164,9 +168,10 @@ public class MainFragment extends Fragment {
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.setAdapter(mAdapter);
         mAdapter.setEmptyView(mEmptyView);
-        mAdapter.setLogItemClickListener(new Action1<LogContent>() {
+        mAdapter.setLogItemClickListener(new Action2<LogContent, Integer>() {
             @Override
-            public void onAction(LogContent logContent) {
+            public void onAction(LogContent logContent, Integer integer) {
+                currentItemPosition = integer;
                 openLogInfoAct(logContent);
             }
         });
@@ -195,7 +200,7 @@ public class MainFragment extends Fragment {
     private void openLogInfoAct(LogContent logContent) {
         Intent intent = new Intent(getContext(), LogInfoActivity.class);
         intent.putExtra(Config.SHOW_LOG_CONTENT_INFO, logContent);
-        startActivity(intent);
+        startActivityForResult(intent, Config.TAG_MAIN_FRAGMENT_TO_LOG_INFO_ACT);
     }
 
     public boolean isItemOpen() {
@@ -204,15 +209,36 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT) {
 
-            if (resultCode == Config.TAG_ADD_REQUIREMENT_RETURN) {
-                if (data != null) {
-                    LogContent logContent = (com.juhezi.coderslife.entry.LogContent)
-                            data.getSerializableExtra(Config.ADD_REQUIREMENT_LOG_CONTENT);
-                    mAdapter.addLogContent(logContent);
+        switch (requestCode) {
+            /**
+             * 从AddLog界面返回
+             */
+            case Config.TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT: {
+                if (resultCode == Config.TAG_ADD_REQUIREMENT_RETURN) {
+                    if (data != null) {
+                        LogContent logContent = (com.juhezi.coderslife.entry.LogContent)
+                                data.getSerializableExtra(Config.ADD_REQUIREMENT_LOG_CONTENT);
+                        mAdapter.addLogContent(logContent);
+                        mRvList.scrollToPosition(mAdapter.getItemCount() - 1);  //移动到添加的那一行
+                    }
                 }
+                break;
+            }
+            /**
+             * 从LogInfo界面返回
+             */
+            case Config.TAG_MAIN_FRAGMENT_TO_LOG_INFO_ACT: {
+                if (resultCode == Config.TAG_LOG_INFO_RETURN_SAVE) {
+                    if (data != null) {
+                        LogContent logContent = (LogContent) data.getSerializableExtra(Config.LOG_SAVED);
+                        Log.i(TAG, "onActivityResult: " + logContent);
+                        mAdapter.updateLogContent(currentItemPosition, logContent);
+                    }
+                }
+                break;
             }
         }
+
     }
 }

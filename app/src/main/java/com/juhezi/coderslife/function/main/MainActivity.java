@@ -15,6 +15,8 @@ import com.juhezi.coderslife.SingleFragmentActivity;
 import com.juhezi.coderslife.databinding.ActMainBinding;
 import com.juhezi.coderslife.entry.Title;
 
+import java.util.UUID;
+
 /**
  * Created by qiao1 on 2017/1/11.
  */

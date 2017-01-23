@@ -15,8 +15,13 @@ public class Config {
 
     public static final String SHOW_LOG_CONTENT_INFO = "showLogContentInfo";
 
+    public static final String LOG_SAVED = "logSaved";
+
     public static final int TAG_ADD_REQUIREMENT_RETURN = 0x100;
 
     public static final int TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT = 0x101;
 
+    public static final int TAG_MAIN_FRAGMENT_TO_LOG_INFO_ACT = 0x102;
+
+    public static final int TAG_LOG_INFO_RETURN_SAVE = 0x103;
 }

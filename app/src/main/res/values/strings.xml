@@ -9,4 +9,10 @@
     <string name="ok">确定</string>
     <string name="today_have_no_logs">今天还没有日志呢</string>
     <string name="back">返回</string>
+    <string name="is_completed">是否已经完成</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="save_change_success">保存修改成功</string>
+    <string name="save_change_fail">保存修改失败</string>
+    <string name="content_can_not_be_empty">内容不能为空</string>
 </resources>

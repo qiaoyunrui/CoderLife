@@ -26,6 +26,12 @@ public class AddLogViewModel extends
                 new LogContent("", LogContent.TYPE_REQUIREMENT));
     }
 
+    /**
+     * 提交日志
+     *
+     * @param contentType
+     * @param action
+     */
     protected void submitLogContent(@LogContent.CONTENT_TYPE int contentType, Action1<Integer> action) {
         LogContent logContent = binding.getLogContent();
         logContent.setContentType(contentType);

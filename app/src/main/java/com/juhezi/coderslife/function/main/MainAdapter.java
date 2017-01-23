@@ -13,6 +13,7 @@ import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ItemLogBinding;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.coderslife.tools.Action2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class MainAdapter extends
     private List<LogContent> logContents = new ArrayList<>();
     private View mEmptyView;
 
-    private Action1<LogContent> logItemClickListener;
+    private Action2<LogContent, Integer> logItemClickListener;
 
     public void setEmptyView(View emptyView) {
         this.mEmptyView = emptyView;
@@ -78,7 +79,7 @@ public class MainAdapter extends
             @Override
             public void onClick(View v) {
                 if (logItemClickListener != null) {
-                    logItemClickListener.onAction(logContents.get(position));
+                    logItemClickListener.onAction(logContents.get(position), position);
                 }
             }
         });
@@ -99,6 +100,11 @@ public class MainAdapter extends
     public void addLogContent(LogContent logContent) {
         logContents.add(logContent);
         notifyItemInserted(logContents.size() - 1);
+    }
+
+    public void updateLogContent(int position, LogContent logContent) {
+        logContents.set(position, logContent);
+        notifyItemChanged(position);
     }
 
     @Override
@@ -126,7 +132,7 @@ public class MainAdapter extends
         }
     }
 
-    public void setLogItemClickListener(Action1<LogContent> logItemClickListener) {
+    public void setLogItemClickListener(Action2<LogContent, Integer> logItemClickListener) {
         this.logItemClickListener = logItemClickListener;
     }
 }

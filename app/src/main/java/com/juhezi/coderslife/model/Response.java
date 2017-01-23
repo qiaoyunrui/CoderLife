@@ -26,4 +26,11 @@ public interface Response {
      */
     void getTodayAllLogs(String time, Action1<List<LogContent>> action);
 
+    /**
+     * 更新某条日志
+     *
+     * @param logContent
+     */
+    void updateLog(LogContent logContent, Action1<Integer> action1);
+
 }

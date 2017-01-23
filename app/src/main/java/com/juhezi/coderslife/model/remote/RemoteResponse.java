@@ -39,4 +39,9 @@ public class RemoteResponse implements Response {
     public void getTodayAllLogs(String time, Action1<List<LogContent>> action) {
 
     }
+
+    @Override
+    public void updateLog(LogContent logContent, Action1<Integer> action1) {
+
+    }
 }

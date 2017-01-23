@@ -51,4 +51,9 @@ public class ResponseImpl implements Response {
         mLocalResponse.getTodayAllLogs(time, action);
     }
 
+    @Override
+    public void updateLog(LogContent logContent, Action1<Integer> action1) {
+        mLocalResponse.updateLog(logContent, action1);
+    }
+
 }

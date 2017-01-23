@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_CONTENT_SQL = "create table " +
             DBContract.LOG_CONTENT_TABLE_NAME + " (" +
-            DBContract.LOGCONTENT_ID + " integer primary key autoincrement, " +
+            DBContract.LOGCONTENT_ID + " text primary key, " +
             DBContract.LOGCONTENT_TIME + " text, " +
             DBContract.LOGCONTENT_CONTENT + " text, " +
             DBContract.LOGCONTENT_TYPE + " integer, " +
