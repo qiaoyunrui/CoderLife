@@ -121,7 +121,6 @@ public class LocalResponse implements Response {
                         + " WHERE " + DBContract.LOGCONTENT_ID
                         + " = '" + id
                         + "'";
-                Log.i(TAG, "run: " + sql);
                 try {
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     db.execSQL(sql);
@@ -130,6 +129,28 @@ public class LocalResponse implements Response {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     action.onAction(Config.RESULT_CODE_ERROR);
+                }
+            }
+        }.start();
+    }
+
+    @Override
+    public void deleteDayAllLogs(final String time, final Action1<Integer> action) {
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "DELETE FROM " + DBContract.LOG_CONTENT_TABLE_NAME
+                        + " WHERE " + DBContract.LOGCONTENT_TIME
+                        + " = '" + time
+                        + "'";
+                try {
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    db.execSQL(sql);
+                    db.close();
+                    action.onAction(Config.RESULT_CODE_OK);
+                } catch (Exception ex) {
+                    action.onAction(Config.RESULT_CODE_ERROR);
+                    ex.printStackTrace();
                 }
             }
         }.start();

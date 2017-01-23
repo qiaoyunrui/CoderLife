@@ -61,4 +61,9 @@ public class ResponseImpl implements Response {
         mLocalResponse.removeLog(id, action);
     }
 
+    @Override
+    public void deleteDayAllLogs(String time, Action1<Integer> action) {
+        mLocalResponse.deleteDayAllLogs(time, action);
+    }
+
 }

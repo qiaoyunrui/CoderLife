@@ -5,7 +5,7 @@
     <string name="requirement">需求</string>
     <string name="bug">Bug</string>
     <string name="version">版本</string>
-    <string name="input_requirement_content">输入要完成的需求内容</string>
+    <string name="input_requirement_content">输入日志内容：</string>
     <string name="ok">确定</string>
     <string name="today_have_no_logs">今天还没有日志呢</string>
     <string name="back">返回</string>
@@ -18,4 +18,9 @@
     <string name="confirm_delete_this_log">确认删除这条日志？</string>
     <string name="OK">确认</string>
     <string name="CANCEL">取消</string>
+    <string name="all_logs">全部日志</string>
+    <string name="delete_all">删除全部</string>
+    <string name="delete_all_success">删除成功</string>
+    <string name="do_not_delete">不要再删除啦</string>
+    <string name="delete_all_fail">删除失败</string>
 </resources>

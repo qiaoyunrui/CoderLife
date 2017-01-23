@@ -11,12 +11,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragMainBinding;
@@ -247,4 +247,42 @@ public class MainFragment extends Fragment {
         }
 
     }
+
+    /**
+     * 删除今日所有日志
+     */
+    public void deleteTodayAllLogs() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        response.deleteDayAllLogs(new SimpleDateFormat("yyyy-MM-dd").format(new Date()), new Action1<Integer>() {
+            @Override
+            public void onAction(final Integer integer) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        if (integer == Config.RESULT_CODE_OK) {
+                            showToast(getString(R.string.delete_all_success));
+                            mAdapter.deleteAllLogs();
+                        } else {
+                            showToast(getString(R.string.delete_all_fail));
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 检测是否需要删除
+     *
+     * @return
+     */
+    protected boolean canBeDeleted() {
+        return mAdapter.getItemCount() != 0;
+    }
+
 }

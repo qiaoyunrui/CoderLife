@@ -112,6 +112,14 @@ public class MainAdapter extends
         notifyItemRemoved(position);
     }
 
+    /**
+     * 删除所有的日志
+     */
+    public void deleteAllLogs() {
+        logContents.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         return logContents.get(position).getContentType();

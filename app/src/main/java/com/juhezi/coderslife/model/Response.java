@@ -41,4 +41,6 @@ public interface Response {
      */
     void removeLog(String id, Action1<Integer> action);
 
+    void deleteDayAllLogs(String time, Action1<Integer> action);
+
 }

@@ -9,6 +9,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.SingleFragmentActivity;
@@ -84,6 +88,31 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_actionbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_main_delete_all:
+                Log.i(TAG, "onOptionsItemSelected: Delete");
+                if (((MainFragment) fragment).canBeDeleted()) {
+                    ((MainFragment) fragment).deleteTodayAllLogs();
+                } else {
+                    showToast(getString(R.string.do_not_delete));
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

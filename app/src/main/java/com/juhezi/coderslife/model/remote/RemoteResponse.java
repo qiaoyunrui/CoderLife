@@ -49,4 +49,9 @@ public class RemoteResponse implements Response {
     public void removeLog(String id, Action1<Integer> action) {
 
     }
+
+    @Override
+    public void deleteDayAllLogs(String time, Action1<Integer> action) {
+
+    }
 }
