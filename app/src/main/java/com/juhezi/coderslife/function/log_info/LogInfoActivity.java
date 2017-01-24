@@ -193,7 +193,7 @@ public class LogInfoActivity extends AppCompatActivity {
                         });
                         //删除本条日志
                     }
-                }).setNegativeButton(R.string.CANCEL, null)
+                }).setNegativeButton(R.string.cancel, null)
                 .create().show();
     }
 

@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -173,6 +174,19 @@ public class MainFragment extends Fragment {
             public void onAction(LogContent logContent, Integer integer) {
                 currentItemPosition = integer;
                 openLogInfoAct(logContent);
+            }
+        });
+        mAdapter.setLogItemCheckBoxListener(new Action1<LogContent>() {
+            @Override
+            public void onAction(LogContent logContent) {
+                response.updateLog(logContent, new Action1<Integer>() {
+                    @Override
+                    public void onAction(Integer integer) {
+                        if (integer == Config.RESULT_CODE_ERROR) {
+                            showToast(getString(R.string.update_data_error));
+                        }
+                    }
+                });
             }
         });
     }

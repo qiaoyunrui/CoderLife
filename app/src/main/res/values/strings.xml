@@ -17,10 +17,12 @@
     <string name="content_can_not_be_empty">内容不能为空</string>
     <string name="confirm_delete_this_log">确认删除这条日志？</string>
     <string name="OK">确认</string>
-    <string name="CANCEL">取消</string>
+    <string name="cancel">取消</string>
     <string name="all_logs">全部日志</string>
     <string name="delete_all">删除全部</string>
     <string name="delete_all_success">删除成功</string>
     <string name="do_not_delete">不要再删除啦</string>
     <string name="delete_all_fail">删除失败</string>
+    <string name="confirm_delete_all_log">确定删除间日所有日志?</string>
+    <string name="update_data_error">更新数据失败</string>
 </resources>

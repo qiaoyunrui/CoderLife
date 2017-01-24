@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -100,9 +102,8 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_main_delete_all:
-                Log.i(TAG, "onOptionsItemSelected: Delete");
                 if (((MainFragment) fragment).canBeDeleted()) {
-                    ((MainFragment) fragment).deleteTodayAllLogs();
+                    comfirmDeleteDialog();
                 } else {
                     showToast(getString(R.string.do_not_delete));
                 }
@@ -113,6 +114,19 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
 
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void comfirmDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.confirm_delete_all_log))
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((MainFragment) fragment).deleteTodayAllLogs();
+                    }
+                }).setNegativeButton(getString(R.string.cancel), null)
+                .create()
+                .show();
     }
 
 }

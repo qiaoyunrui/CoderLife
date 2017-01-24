@@ -28,6 +28,8 @@ public class MainAdapter extends
     private List<LogContent> logContents = new ArrayList<>();
     private View mEmptyView;
 
+    private Action1<LogContent> logItemCheckBoxListener;
+
     private Action2<LogContent, Integer> logItemClickListener;
 
     public void setEmptyView(View emptyView) {
@@ -80,6 +82,14 @@ public class MainAdapter extends
             public void onClick(View v) {
                 if (logItemClickListener != null) {
                     logItemClickListener.onAction(logContents.get(holder.getAdapterPosition()), holder.getAdapterPosition());
+                }
+            }
+        });
+        ((LogItemHolder) holder).checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (logItemCheckBoxListener != null) {
+                    logItemCheckBoxListener.onAction(logContents.get(holder.getAdapterPosition()));
                 }
             }
         });
@@ -147,5 +157,9 @@ public class MainAdapter extends
 
     public void setLogItemClickListener(Action2<LogContent, Integer> logItemClickListener) {
         this.logItemClickListener = logItemClickListener;
+    }
+
+    public void setLogItemCheckBoxListener(Action1<LogContent> listener) {
+        this.logItemCheckBoxListener = listener;
     }
 }
