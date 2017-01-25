@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -28,7 +28,6 @@
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:clickable="true"
             android:src="@drawable/ic_add"
-            app:layout_behavior="com.juhezi.coderslife.tools.ScrollFabBehavior"
             app:fabSize="auto"
             app:rippleColor="@color/colorPrimary" />
 
@@ -89,6 +88,6 @@
 
         </RelativeLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
 
 </layout>

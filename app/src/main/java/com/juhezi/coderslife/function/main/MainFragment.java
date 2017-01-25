@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -189,6 +190,19 @@ public class MainFragment extends Fragment {
                 });
             }
         });
+        mRvList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 5) {
+                    Log.i(TAG, "onScrolled: 下滑");
+                    onScrollDown();
+                }
+                if (dy < -5) {
+                    Log.i(TAG, "onScrolled: 上滑");
+                    onScrollUp();
+                }
+            }
+        });
     }
 
     private void openItem() {
@@ -297,6 +311,20 @@ public class MainFragment extends Fragment {
      */
     protected boolean canBeDeleted() {
         return mAdapter.getItemCount() != 0;
+    }
+
+    /**
+     * 上滑
+     */
+    private void onScrollUp() {
+        mFabAdd.show();
+    }
+
+    /**
+     * 下滑
+     */
+    private void onScrollDown() {
+        mFabAdd.hide();
     }
 
 }
