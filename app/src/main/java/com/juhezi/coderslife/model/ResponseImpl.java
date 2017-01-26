@@ -66,4 +66,9 @@ public class ResponseImpl implements Response {
         mLocalResponse.deleteDayAllLogs(time, action);
     }
 
+    @Override
+    public void getAllLogs(Action1<List<LogContent>> action) {
+        mLocalResponse.getAllLogs(action);
+    }
+
 }

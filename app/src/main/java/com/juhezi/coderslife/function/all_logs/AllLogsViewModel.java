@@ -4,6 +4,11 @@ import android.content.Context;
 
 import com.juhezi.coderslife.BaseViewModel;
 import com.juhezi.coderslife.databinding.FragAllLogsBinding;
+import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.entry.Title;
+import com.juhezi.coderslife.tools.Action1;
+
+import java.util.List;
 
 /**
  * Created by qiao1 on 2017/1/25.
@@ -17,5 +22,11 @@ public class AllLogsViewModel extends BaseViewModel<FragAllLogsBinding> {
 
     @Override
     protected void initData() {
+        binding.setTitle(new Title(Title.ALL_LOGS));
     }
+
+    protected void getAllLogs(Action1<List<LogContent>> action) {
+        mResponse.getAllLogs(action);
+    }
+
 }

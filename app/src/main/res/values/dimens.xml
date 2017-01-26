@@ -13,4 +13,6 @@
     <dimen name="item_log_margin">8dp</dimen>
     <dimen name="img_item_log_flag_width">10dp</dimen>
     <dimen name="act_log_info_content_width">300dp</dimen>
+    <dimen name="item_all_logs_icon_size">30dp</dimen>
+    <dimen name="item_all_logs_space_height">1dp</dimen>
 </resources>

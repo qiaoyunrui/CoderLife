@@ -43,4 +43,6 @@ public interface Response {
 
     void deleteDayAllLogs(String time, Action1<Integer> action);
 
+    void getAllLogs(Action1<List<LogContent>> action);
+
 }

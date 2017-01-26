@@ -8,25 +8,37 @@
             type="com.juhezi.coderslife.entry.Title" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_frag_all_logs"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimary"
-            android:title="@{title.content}" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list_frag_all_logs"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_frag_all_logs"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/colorPrimary"
+                android:title="@{title.content}" />
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_frag_all_logs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </LinearLayout>
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/view_empty"
+            layout="@layout/layout_empty" />
+
+    </FrameLayout>
+
+
 </layout>
 

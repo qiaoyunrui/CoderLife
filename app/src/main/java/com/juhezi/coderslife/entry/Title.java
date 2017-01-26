@@ -9,8 +9,9 @@ public class Title {
 
     public static final String TODAY_TITLE = "今日日志";
     public static final String ADD = "添加";
+    public static final String ALL_LOGS = "全部日志";
 
-    @StringDef({TODAY_TITLE, ADD})
+    @StringDef({TODAY_TITLE, ADD, ALL_LOGS})
     private @interface TITLE_TYPE {
     }
 
