@@ -64,8 +64,9 @@
         </io.codetail.widget.RevealFrameLayout>
 
         <include
-            android:id="v_frag_main_empty"
-            layout="@layout/layout_empty" />
+            android:id="@+id/v_frag_main_empty"
+            layout="@layout/layout_empty"
+            android:visibility="invisible" />
 
     </FrameLayout>
 

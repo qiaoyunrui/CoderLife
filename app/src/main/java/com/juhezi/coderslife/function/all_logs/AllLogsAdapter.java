@@ -2,9 +2,11 @@ package com.juhezi.coderslife.function.all_logs;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.juhezi.coderslife.R;
@@ -57,15 +59,6 @@ public class AllLogsAdapter extends RecyclerView.Adapter<AllLogsAdapter.LogItemH
         }
     }
 
-    public void setLogContents(List<LogContent> logContents) {
-        this.logContents = logContents;
-        notifyDataSetChanged();
-    }
-
-    public void setEmptyView(View emptyView) {
-        this.mEmptyView = mEmptyView;
-    }
-
     @Override
     public int getItemCount() {
         if (mEmptyView != null) {
@@ -76,6 +69,17 @@ public class AllLogsAdapter extends RecyclerView.Adapter<AllLogsAdapter.LogItemH
             }
         }
         return logContents.size();
+    }
+
+    public void setLogContents(List<LogContent> logContents) {
+        if (logContents != null) {
+            this.logContents = logContents;
+            notifyDataSetChanged();
+        }
+    }
+
+    public void setEmptyView(View emptyView) {
+        this.mEmptyView = emptyView;
     }
 
     public class LogItemHolder extends RecyclerView.ViewHolder {

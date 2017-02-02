@@ -2,6 +2,7 @@ package com.juhezi.coderslife.function.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +21,7 @@ import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.SingleFragmentActivity;
 import com.juhezi.coderslife.databinding.ActMainBinding;
 import com.juhezi.coderslife.entry.Title;
+import com.juhezi.coderslife.function.all_logs.AllLogsActivity;
 
 import java.util.UUID;
 
@@ -75,6 +77,18 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
                 R.string.drawer_layout_close_desc);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                switch (item.getItemId()) {
+                    case R.id.item_all_logs:
+                        turn2AllLogsAct();
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     private void initData(ActMainBinding binding) {
@@ -127,6 +141,11 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
                 }).setNegativeButton(getString(R.string.cancel), null)
                 .create()
                 .show();
+    }
+
+    private void turn2AllLogsAct() {
+        Intent intent = new Intent(this, AllLogsActivity.class);
+        startActivity(intent);
     }
 
 }

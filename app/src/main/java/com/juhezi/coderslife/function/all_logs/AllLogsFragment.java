@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -41,6 +43,7 @@ public class AllLogsFragment extends Fragment {
         View view = inflater.inflate(R.layout.frag_all_logs, container, false);
         FragAllLogsBinding binding = DataBindingUtil.bind(view);
         viewModel = new AllLogsViewModel(binding, getContext());
+        mEmptyView = view.findViewById(R.id.view_empty);
         initView(binding);
         initRecyclerView(binding);
         initData();
@@ -54,7 +57,6 @@ public class AllLogsFragment extends Fragment {
         mActionBar = activity.getSupportActionBar();
         mActionBar.setHomeButtonEnabled(true);
         mActionBar.setDisplayHomeAsUpEnabled(true);
-        mEmptyView = binding.viewEmpty;
     }
 
     private void initRecyclerView(FragAllLogsBinding binding) {

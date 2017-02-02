@@ -19,7 +19,7 @@
         android:layout_below="@+id/img_frag_main_empty_icon"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:gravity="center"
-        android:text="@string/today_have_no_logs"
+        android:text="@string/have_no_logs"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/item_requirement_text_size" />
 

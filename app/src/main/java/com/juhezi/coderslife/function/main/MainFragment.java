@@ -53,9 +53,6 @@ public class MainFragment extends Fragment {
         private static final MainFragment sInstance = new MainFragment();
     }
 
-    public MainFragment() {
-    }
-
     private FragMainBinding binding;
 
     private FloatingActionButton mFabAdd;
@@ -64,7 +61,7 @@ public class MainFragment extends Fragment {
     private View mVOverlay;
     private RecyclerView mRvList;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RelativeLayout mEmptyView;
+    private View mEmptyView;
 
     private Response response;
 
@@ -77,6 +74,7 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.frag_main, container, false);
         binding = FragMainBinding.bind(rootView);
         response = ResponseImpl.getInstance(getContext());
+        mEmptyView = rootView.findViewById(R.id.v_frag_main_empty);
         initEvent();
         initRecyclerView();
         initData();
@@ -127,7 +125,7 @@ public class MainFragment extends Fragment {
         mVOverlay = binding.vFragMainOverlay;
         mRvList = binding.rvListFragMain;
         mSwipeRefreshLayout = binding.srlRefreshFragMain;
-        mEmptyView = binding.vFragMainEmpty;
+//        mEmptyView = binding.vFragMainEmpty;
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,20 +22,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:background="@color/colorPrimary"
+                android:theme="@style/Toolbar"
                 android:title="@{title.content}" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_list_frag_all_logs"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list_frag_all_logs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <include
+                    android:id="@+id/view_empty"
+                    layout="@layout/layout_empty"
+                    android:visibility="invisible" />
+
+            </FrameLayout>
 
         </LinearLayout>
-
-        <include
-            android:id="@+id/view_empty"
-            layout="@layout/layout_empty" />
 
     </FrameLayout>
 

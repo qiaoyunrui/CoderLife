@@ -148,6 +148,7 @@ public class LocalResponse implements Response {
                     action.onAction(Config.RESULT_CODE_OK);
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                    Log.i(TAG, "run: Hello");
                     action.onAction(Config.RESULT_CODE_ERROR);
                 }
             }

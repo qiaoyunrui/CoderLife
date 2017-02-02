@@ -23,6 +23,8 @@
     <string name="delete_all_success">删除成功</string>
     <string name="do_not_delete">不要再删除啦</string>
     <string name="delete_all_fail">删除失败</string>
-    <string name="confirm_delete_all_log">确定删除间日所有日志?</string>
+    <string name="confirm_delete_all_log">确定删除所有日志?</string>
     <string name="update_data_error">更新数据失败</string>
+    <string name="draft_box">草稿箱</string>
+    <string name="have_no_logs">暂时没有日志</string>
 </resources>

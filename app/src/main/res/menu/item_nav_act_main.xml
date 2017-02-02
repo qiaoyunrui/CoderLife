@@ -2,8 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item_all_logs_delete"
+        android:id="@+id/item_all_logs"
         android:icon="@drawable/ic_all_logs"
         android:title="@string/all_logs" />
+
+    <item
+        android:id="@+id/item_draft_box"
+        android:icon="@drawable/ic_android"
+        android:title="@string/draft_box" />
 
 </menu>
