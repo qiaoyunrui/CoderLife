@@ -22,3 +22,14 @@
 ## 项目详细
 
 本项目借助DataBinding实现了MVVM框架，使用SQLite作为本地数据库。
+
+## 截图
+
+ ![pic_1](./screenshots/pic_1.png)
+ ![pic_2](./screenshots/pic_2.png)
+ ![pic_3](./screenshots/pic_3.png)
+ ![pic_4](./screenshots/pic_4.png)
+
+## APK
+
+[APK点此下载](./apk/CoderLife_0.0.1.apk)
