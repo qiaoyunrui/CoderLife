@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.main;
 
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
@@ -89,6 +91,7 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
                 return false;
             }
         });
+        Log.i(TAG, "initActionBar: " + mActionBar);
     }
 
     private void initData(ActMainBinding binding) {
@@ -146,6 +149,17 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
     private void turn2AllLogsAct() {
         Intent intent = new Intent(this, AllLogsActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * 隐藏Toolbar
+     */
+    public void hideActionBar() {
+        mActionBar.hide();
+    }
+
+    public void showActionBar() {
+        mActionBar.show();
     }
 
 }

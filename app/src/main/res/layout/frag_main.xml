@@ -14,9 +14,11 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.RecyclerView
+                android:paddingTop="?actionBarSize"
                 android:id="@+id/rv_list_frag_main"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:clipToPadding="false" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

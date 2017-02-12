@@ -191,12 +191,11 @@ public class MainFragment extends Fragment {
         mRvList.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                Log.i(TAG, "onScrolled: " + dy);
                 if (dy > 5) {
-                    Log.i(TAG, "onScrolled: 下滑");
                     onScrollDown();
                 }
                 if (dy < -5) {
-                    Log.i(TAG, "onScrolled: 上滑");
                     onScrollUp();
                 }
             }
@@ -316,6 +315,7 @@ public class MainFragment extends Fragment {
      */
     private void onScrollUp() {
         mFabAdd.show();
+        ((MainActivity) getActivity()).showActionBar();
     }
 
     /**
@@ -323,6 +323,7 @@ public class MainFragment extends Fragment {
      */
     private void onScrollDown() {
         mFabAdd.hide();
+        ((MainActivity) getActivity()).hideActionBar();
     }
 
 }

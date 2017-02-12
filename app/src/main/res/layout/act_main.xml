@@ -16,10 +16,14 @@
         android:layout_height="match_parent"
         tools:openDrawer="start">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_act_main_frag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tb_act_main"
@@ -39,12 +43,7 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <RelativeLayout
-                android:id="@+id/rl_act_main_frag"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
+        </FrameLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nv_act_main"

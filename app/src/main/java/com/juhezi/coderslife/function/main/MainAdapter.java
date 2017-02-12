@@ -98,7 +98,6 @@ public class MainAdapter extends
     @Override
     public int getItemCount() {
         if (mEmptyView != null) {
-            Log.i(TAG, "getItemCount: " + mEmptyView);
             if (logContents.size() == 0) {
                 mEmptyView.setVisibility(View.VISIBLE);
             } else {
