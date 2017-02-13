@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -77,6 +78,30 @@ public class AllLogsFragment extends Fragment {
                 }
             }
         });
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            //设置滑动类型的标记。需要设置两种类型的flag，即dragFlags 和 swipeFlags，
+            // 分别代表着拖拽标记和滑动标记。
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                int swipeFlag = ItemTouchHelper.LEFT;
+                int dragFlag = ItemTouchHelper.DOWN | ItemTouchHelper.UP;
+                return makeMovementFlags(dragFlag, swipeFlag);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                if(direction == ItemTouchHelper.LEFT) {
+                    // TODO: 2017/2/13 删除数据，显示Toast，提供撤销操作
+                }
+            }
+        });
+        helper.attachToRecyclerView(mRecyclerView);
     }
 
     private void onScrollUp() {
