@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
@@ -155,11 +156,28 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
      * 隐藏Toolbar
      */
     public void hideActionBar() {
-        mActionBar.hide();
+        startToolbarAnim(true);
     }
 
     public void showActionBar() {
-        mActionBar.show();
+        startToolbarAnim(false);
+    }
+
+    private void startToolbarAnim(boolean isUp) {
+        ObjectAnimator animator;
+        if (isUp) {
+            animator = ObjectAnimator.ofFloat(mToolbar,
+                    "translationY",
+                    mToolbar.getTranslationY(),
+                    -mToolbar.getHeight());
+        } else {
+            animator = ObjectAnimator.ofFloat(mToolbar,
+                    "translationY",
+                    mToolbar.getTranslationY(),
+                    0);
+        }
+        animator.setDuration(50);
+        animator.start();
     }
 
 }
