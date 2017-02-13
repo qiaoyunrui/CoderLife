@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.all_logs;
 
+import android.animation.ObjectAnimator;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -65,6 +66,25 @@ public class AllLogsFragment extends Fragment {
         mAdapter = new AllLogsAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setEmptyView(mEmptyView);
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 5) {
+                    onScrollDown();
+                }
+                if (dy < -5) {
+                    onScrollUp();
+                }
+            }
+        });
+    }
+
+    private void onScrollUp() {
+        mActionBar.show();
+    }
+
+    private void onScrollDown() {
+        mActionBar.hide();
     }
 
     private void initData() {

@@ -125,7 +125,6 @@ public class MainFragment extends Fragment {
         mVOverlay = binding.vFragMainOverlay;
         mRvList = binding.rvListFragMain;
         mSwipeRefreshLayout = binding.srlRefreshFragMain;
-//        mEmptyView = binding.vFragMainEmpty;
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
         mFabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +190,6 @@ public class MainFragment extends Fragment {
         mRvList.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                Log.i(TAG, "onScrolled: " + dy);
                 if (dy > 5) {
                     onScrollDown();
                 }
