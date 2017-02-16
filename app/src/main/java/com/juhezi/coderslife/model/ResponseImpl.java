@@ -71,4 +71,9 @@ public class ResponseImpl implements Response {
         mLocalResponse.getAllLogs(action);
     }
 
+    @Override
+    public void getPartLogs(int start, int offset, Action1<List<LogContent>> action) {
+        mLocalResponse.getPartLogs(start, offset, action);
+    }
+
 }

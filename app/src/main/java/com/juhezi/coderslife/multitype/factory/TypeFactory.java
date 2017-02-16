@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.all_logs.bean.ProgressBean;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
 import com.juhezi.coderslife.multitype.viewholder.BaseViewHolder;
 
@@ -20,6 +21,8 @@ public abstract class TypeFactory {
     public abstract int type(LogContent logEntry);
 
     public abstract int type(TimeBean timeBean);
+
+    public abstract int type(ProgressBean progressBean);
 
     protected RecyclerView.Adapter adapter;
 

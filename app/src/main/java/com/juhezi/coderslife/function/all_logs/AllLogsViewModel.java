@@ -16,6 +16,9 @@ import java.util.List;
 public class AllLogsViewModel extends BaseViewModel<FragAllLogsBinding> {
     private static String TAG = "AllLogsViewModel";
 
+    private final int offset = 20;
+    private int start = 0;
+
     public AllLogsViewModel(FragAllLogsBinding binding, Context context) {
         super(binding, context);
     }
@@ -33,4 +36,12 @@ public class AllLogsViewModel extends BaseViewModel<FragAllLogsBinding> {
         mResponse.removeLog(id, action);
     }
 
+    public void getPartLogs(Action1<List<LogContent>> action) {
+        mResponse.getPartLogs(start, offset, action);
+        start += offset;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
 }

@@ -1,6 +1,7 @@
 package com.juhezi.coderslife.model;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.tools.Action;
 import com.juhezi.coderslife.tools.Action1;
 
 import java.util.List;
@@ -44,5 +45,13 @@ public interface Response {
     void deleteDayAllLogs(String time, Action1<Integer> action);
 
     void getAllLogs(Action1<List<LogContent>> action);
+
+    /**
+     * 分页查询
+     * @param start
+     * @param offset
+     * @param action
+     */
+    void getPartLogs(int start, int offset, Action1<List<LogContent>> action);
 
 }

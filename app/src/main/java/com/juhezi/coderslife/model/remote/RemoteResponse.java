@@ -59,4 +59,9 @@ public class RemoteResponse implements Response {
     public void getAllLogs(Action1<List<LogContent>> action) {
 
     }
+
+    @Override
+    public void getPartLogs(int start, int offset, Action1<List<LogContent>> action) {
+
+    }
 }

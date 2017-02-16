@@ -8,19 +8,35 @@
             type="com.juhezi.coderslife.function.all_logs.bean.TimeBean" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray">
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_all_logs_space_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_item_all_logs_time"
+            android:background="@android:color/darker_gray" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tv_item_all_logs_time"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:layout_margin="@dimen/item_all_logs_time_margin"
-            android:gravity="center"
             android:text="@{timeBean.time}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/act_main_title_size" />
 
-    </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_all_logs_space_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_item_all_logs_time"
+            android:background="@android:color/darker_gray" />
+
+    </RelativeLayout>
 </layout>

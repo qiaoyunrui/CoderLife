@@ -102,6 +102,27 @@ public class LocalResponse implements Response {
     }
 
     @Override
+    public void getPartLogs(final int start, final int offset, final Action1<List<LogContent>> action) {
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "SELECT * FROM " + DBContract.LOG_CONTENT_TABLE_NAME + " LIMIT " + offset + " OFFSET " + start;
+                Log.i(TAG, "run: " + sql);
+                try {
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+                    Cursor cursor = database.rawQuery(sql, null);
+                    List<LogContent> list = cursor2LogContent(cursor);
+                    action.onAction(list);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    action.onAction(new ArrayList<LogContent>());
+                }
+            }
+        }.start();
+
+    }
+
+    @Override
     public void updateLog(final LogContent logContent, final Action1<Integer> action1) {
         if (logContent == null)
             return;

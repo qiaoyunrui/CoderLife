@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ItemAllLogsBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.all_logs.bean.ProgressBean;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
 import com.juhezi.coderslife.multitype.decorate.Visitable;
 import com.juhezi.coderslife.multitype.factory.TypeFactory;
@@ -48,6 +49,7 @@ public class AllLogsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public int getItemCount() {
         if (datas == null) {
+            mEmptyView.setVisibility(View.VISIBLE);
             return 0;
         }
         if (mEmptyView != null) {
@@ -67,12 +69,54 @@ public class AllLogsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.datas = datas;
     }
 
-    public void addDatas(Visitable data) {
+    /**
+     * 添加数据
+     *
+     * @param datas
+     */
+    public void addDatas(List<Visitable> datas) {
+        if (this.datas == null) {
+            this.datas = new ArrayList<Visitable>();
+        }
+        if (datas != null || datas.size() != 0) {
+            if (this.datas.size() != 0 &&
+                    ((LogContent) this.datas.get(this.datas.size() - 1)).getTime()
+                            .equals(((TimeBean) datas.get(0)).getTime())) {
+                datas.remove(0);
+            }
+            this.datas.addAll(datas);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        if (datas != null) {
+            datas.clear();
+        }
+    }
+
+    public void addData(Visitable data) {
         if (datas == null) {
             datas = new ArrayList<>();
         }
         datas.add(data);
         notifyItemInserted(getItemCount() - 1);
+    }
+
+    public boolean addProgressBar() {
+        if (datas == null) return false;
+        if (datas.get(getItemCount() - 1) instanceof ProgressBean) return false;
+        addData(new ProgressBean());
+        return true;
+    }
+
+    public boolean removeProgressBar() {
+        if (datas == null) return false;
+        if (getItemCount() < 1) return false;
+        if (!(datas.get(getItemCount() - 1) instanceof ProgressBean)) return false;
+        datas.remove(getItemCount() - 1);
+        notifyItemRemoved(getItemCount() - 1);
+        return true;
     }
 
     /**

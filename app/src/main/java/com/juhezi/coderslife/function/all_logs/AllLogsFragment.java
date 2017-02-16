@@ -16,10 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragAllLogsBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.all_logs.bean.ProgressBean;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
 import com.juhezi.coderslife.function.all_logs.view_holder.LogViewHolder;
 import com.juhezi.coderslife.multitype.decorate.Visitable;
@@ -44,6 +46,7 @@ public class AllLogsFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private AllLogsAdapter mAdapter;
     private View mEmptyView;
+    private boolean hasShown = false;
 
     @Nullable
     @Override
@@ -54,7 +57,7 @@ public class AllLogsFragment extends Fragment {
         mEmptyView = view.findViewById(R.id.view_empty);
         initView(binding);
         initRecyclerView(binding);
-        initData(null);
+        getDatas(null);
         return view;
     }
 
@@ -69,7 +72,9 @@ public class AllLogsFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                initData(new Action() {
+                mAdapter.clearData();
+                viewModel.setStart(0);  //重新开始加载
+                getDatas(new Action() {
                     @Override
                     public void onAction() {
                         mSwipeRefreshLayout.setRefreshing(false);
@@ -93,6 +98,23 @@ public class AllLogsFragment extends Fragment {
                 }
                 if (dy < -5) {
                     onScrollUp();
+                }
+                if (((LinearLayoutManager) recyclerView.getLayoutManager())
+                        .findLastVisibleItemPosition() == mAdapter.getItemCount() - 1 && !hasShown) {
+                    hasShown = true;
+                    showToast(getString(R.string.drag_up_load_more));
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    if (((LinearLayoutManager) recyclerView.getLayoutManager())
+                            .findLastVisibleItemPosition() == mAdapter.getItemCount() - 1) {
+                        if (mAdapter.addProgressBar()) {    //添加了Progressbar
+                            getDatas(null);
+                        }
+                    }
                 }
             }
         });
@@ -140,6 +162,30 @@ public class AllLogsFragment extends Fragment {
             }
         });
         helper.attachToRecyclerView(mRecyclerView);
+
+    }
+
+    /**
+     * 分页加载数据
+     */
+    private void getDatas(final Action action) {
+        viewModel.getPartLogs(new Action1<List<LogContent>>() {
+            @Override
+            public void onAction(final List<LogContent> logContents) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.removeProgressBar();
+                        if (logContents.size() == 0) {
+                            showToast(getString(R.string.have_no_logs));
+                        } else {
+                            mAdapter.addDatas(insertTime(logContents));
+                        }
+                        if (action != null) action.onAction();
+                    }
+                });
+            }
+        });
     }
 
     private void onScrollUp() {
@@ -148,23 +194,6 @@ public class AllLogsFragment extends Fragment {
 
     private void onScrollDown() {
         mActionBar.hide();
-    }
-
-    private void initData(final Action action) {
-        viewModel.getAllLogs(new Action1<List<LogContent>>() {
-            @Override
-            public void onAction(final List<LogContent> logContents) {
-                //对数据进行处理
-                final List<Visitable> data = insertTime(logContents);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.setDatas(data);
-                        if (action != null) action.onAction();
-                    }
-                });
-            }
-        });
     }
 
     private static AllLogsFragment sInstance;
@@ -200,6 +229,10 @@ public class AllLogsFragment extends Fragment {
 
     private void showSnackbar(String message) {
         Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
 }
