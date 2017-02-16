@@ -1,17 +1,17 @@
 package com.juhezi.coderslife.function.all_logs;
 
-import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.ItemAllLogsBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.multitype.decorate.Visitable;
+import com.juhezi.coderslife.multitype.factory.TypeFactory;
+import com.juhezi.coderslife.multitype.viewholder.BaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,81 +19,65 @@ import java.util.List;
 /**
  * Created by qiao1 on 2017/1/25.
  */
-public class AllLogsAdapter extends RecyclerView.Adapter<AllLogsAdapter.LogItemHolder> {
+public class AllLogsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static String TAG = "AllLogsAdapter";
 
-    private List<LogContent> logContents = new ArrayList<>();
+    private List<Visitable> datas;
+    private TypeFactory typeFactory;
 
     private View mEmptyView;
 
-    @Override
-    public LogItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_all_logs, parent, false);
-        ItemAllLogsBinding binding = DataBindingUtil.bind(itemView);
-        return new LogItemHolder(itemView, binding);
+    public AllLogsAdapter() {
+        typeFactory = new ItemTypefactory(this);
     }
 
     @Override
-    public void onBindViewHolder(LogItemHolder holder, int position) {
-        holder.binding.setLog(logContents.get(position));
-        holder.binding.executePendingBindings();
-        switch (logContents.get(position).getContentType()) {
-            case LogContent.TYPE_REQUIREMENT:
-                holder.mImgType.setImageResource(R.drawable.ic_requirement);
-                break;
-            case LogContent.TYPE_BUG:
-                holder.mImgType.setImageResource(R.drawable.ic_bug);
-                break;
-            case LogContent.TYPE_VERSION:
-                holder.mImgType.setImageResource(R.drawable.ic_version);
-                break;
-            case LogContent.TYPE_ERROR:
-                holder.mImgType.setImageResource(R.drawable.ic_error);
-                break;
-        }
-        if (position == logContents.size() - 1) {    //是最后一个Item
-            holder.mVdivider.setVisibility(View.INVISIBLE);
-        } else {
-            holder.mVdivider.setVisibility(View.VISIBLE);
-        }
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(viewType, parent, false);
+        return typeFactory.createViewHolder(viewType, itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        holder.bindViewData(datas.get(position), position);
     }
 
     @Override
     public int getItemCount() {
+        if (datas == null) {
+            return 0;
+        }
         if (mEmptyView != null) {
-            if (logContents.size() == 0) {
+            if (datas.size() == 0) {
                 mEmptyView.setVisibility(View.VISIBLE);
             } else {
                 mEmptyView.setVisibility(View.INVISIBLE);
             }
         }
-        return logContents.size();
+        return datas.size();
     }
 
-    public void setLogContents(List<LogContent> logContents) {
-        if (logContents != null) {
-            this.logContents = logContents;
-            notifyDataSetChanged();
+    /**
+     * 设置数据
+     */
+    public void setDatas(List<Visitable> datas) {
+        this.datas = datas;
+    }
+
+    public void addDatas(Visitable data) {
+        if (datas == null) {
+            datas = new ArrayList<>();
         }
+        datas.add(data);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return datas.get(position).type(typeFactory);
     }
 
     public void setEmptyView(View emptyView) {
         this.mEmptyView = emptyView;
     }
-
-    public class LogItemHolder extends RecyclerView.ViewHolder {
-
-        private ImageView mImgType;
-        private View mVdivider;   //分割线
-        private ItemAllLogsBinding binding;
-
-        public LogItemHolder(View itemView, ItemAllLogsBinding binding) {
-            super(itemView);
-            this.binding = binding;
-            mImgType = binding.imgItemAllLogsIcon;
-            mVdivider = binding.vItemAllLogs;
-        }
-    }
-
 }

@@ -4,6 +4,9 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.IntDef;
 
+import com.juhezi.coderslife.multitype.decorate.Visitable;
+import com.juhezi.coderslife.multitype.factory.TypeFactory;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +16,7 @@ import java.util.UUID;
  * 日志内容
  * Created by qiao1 on 2017/1/12.
  */
-public class LogContent extends BaseObservable implements Serializable {
+public class LogContent extends BaseObservable implements Serializable, Visitable {
 
     public static final int TYPE_REQUIREMENT = 0x000;   //类型为需求
     public static final int TYPE_BUG = 0x001;     //类型为Debug
@@ -28,6 +31,11 @@ public class LogContent extends BaseObservable implements Serializable {
     private boolean state;  //状态
     private String time;    //时间
     private String id;
+
+    @Override
+    public int type(TypeFactory factory) {
+        return factory.type(this);
+    }
 
     @IntDef({TYPE_REQUIREMENT, TYPE_BUG, TYPE_VERSION, TYPE_ERROR})
     public @interface CONTENT_TYPE {

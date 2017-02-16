@@ -1,8 +1,6 @@
 package com.juhezi.coderslife.function.all_logs;
 
-import android.animation.ObjectAnimator;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,15 +12,19 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragAllLogsBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
+import com.juhezi.coderslife.function.all_logs.view_holder.LogViewHolder;
+import com.juhezi.coderslife.multitype.decorate.Visitable;
 import com.juhezi.coderslife.tools.Action1;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -83,6 +85,8 @@ public class AllLogsFragment extends Fragment {
             // 分别代表着拖拽标记和滑动标记。
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                if (!(viewHolder instanceof LogViewHolder))
+                    return 0;   //0代表不滑动
                 int swipeFlag = ItemTouchHelper.LEFT;
                 int dragFlag = ItemTouchHelper.DOWN | ItemTouchHelper.UP;
                 return makeMovementFlags(dragFlag, swipeFlag);
@@ -96,7 +100,7 @@ public class AllLogsFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                if(direction == ItemTouchHelper.LEFT) {
+                if (direction == ItemTouchHelper.LEFT) {
                     // TODO: 2017/2/13 删除数据，显示Toast，提供撤销操作
                 }
             }
@@ -116,10 +120,12 @@ public class AllLogsFragment extends Fragment {
         viewModel.getAllLogs(new Action1<List<LogContent>>() {
             @Override
             public void onAction(final List<LogContent> logContents) {
+                //对数据进行处理
+                final List<Visitable> data = insertTime(logContents);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.setLogContents(logContents);
+                        mAdapter.setDatas(data);
                     }
                 });
             }
@@ -133,6 +139,28 @@ public class AllLogsFragment extends Fragment {
             sInstance = new AllLogsFragment();
         }
         return sInstance;
+    }
+
+    /**
+     * 插入时间
+     *
+     * @param logs
+     * @return
+     */
+    private List<Visitable> insertTime(List<LogContent> logs) {
+        List<Visitable> data = new ArrayList(logs);
+        String time = "";
+        String temp = "";
+        int num = 0;    //插入的次数
+        for (int i = 0; i < logs.size(); i++) {
+            temp = logs.get(i).getTime();
+            if (!temp.equals(time)) {    //时间不相等
+                data.add(i + num, new TimeBean(temp));
+                num++;
+                time = temp;
+            }
+        }
+        return data;
     }
 
 }
