@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
 import com.juhezi.coderslife.function.all_logs.view_holder.LogViewHolder;
 import com.juhezi.coderslife.multitype.decorate.Visitable;
+import com.juhezi.coderslife.tools.Action;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
 
@@ -38,6 +41,7 @@ public class AllLogsFragment extends Fragment {
     private ActionBar mActionBar;
     private AppCompatActivity activity;
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private AllLogsAdapter mAdapter;
     private View mEmptyView;
 
@@ -50,7 +54,7 @@ public class AllLogsFragment extends Fragment {
         mEmptyView = view.findViewById(R.id.view_empty);
         initView(binding);
         initRecyclerView(binding);
-        initData();
+        initData(null);
         return view;
     }
 
@@ -61,6 +65,18 @@ public class AllLogsFragment extends Fragment {
         mActionBar = activity.getSupportActionBar();
         mActionBar.setHomeButtonEnabled(true);
         mActionBar.setDisplayHomeAsUpEnabled(true);
+        mSwipeRefreshLayout = binding.srlRefresh;
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData(new Action() {
+                    @Override
+                    public void onAction() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
     }
 
     private void initRecyclerView(FragAllLogsBinding binding) {
@@ -134,7 +150,7 @@ public class AllLogsFragment extends Fragment {
         mActionBar.hide();
     }
 
-    private void initData() {
+    private void initData(final Action action) {
         viewModel.getAllLogs(new Action1<List<LogContent>>() {
             @Override
             public void onAction(final List<LogContent> logContents) {
@@ -144,6 +160,7 @@ public class AllLogsFragment extends Fragment {
                     @Override
                     public void run() {
                         mAdapter.setDatas(data);
+                        if (action != null) action.onAction();
                     }
                 });
             }

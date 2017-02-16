@@ -21,14 +21,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list_frag_all_logs"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/srl_refresh"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingTop="?actionBarSize">
+                    android:layout_height="match_parent">
 
-                </android.support.v7.widget.RecyclerView>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_list_frag_all_logs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingTop="?actionBarSize"></android.support.v7.widget.RecyclerView>
+
+                </android.support.v4.widget.SwipeRefreshLayout>
 
                 <include
                     android:id="@+id/view_empty"
