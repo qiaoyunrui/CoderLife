@@ -27,4 +27,7 @@
     <string name="update_data_error">更新数据失败</string>
     <string name="draft_box">草稿箱</string>
     <string name="have_no_logs">暂时没有日志</string>
+    <string name="undo">撤销</string>
+    <string name="remove_success">删除成功</string>
+    <string name="remove_fail">删除失败</string>
 </resources>

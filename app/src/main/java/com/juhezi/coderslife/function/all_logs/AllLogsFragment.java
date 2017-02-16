@@ -3,6 +3,7 @@ package com.juhezi.coderslife.function.all_logs;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +22,9 @@ import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
 import com.juhezi.coderslife.function.all_logs.view_holder.LogViewHolder;
 import com.juhezi.coderslife.multitype.decorate.Visitable;
 import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.coderslife.tools.Config;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -99,9 +99,27 @@ public class AllLogsFragment extends Fragment {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT) {
-                    // TODO: 2017/2/13 删除数据，显示Toast，提供撤销操作
+                    int position = viewHolder.getAdapterPosition();
+                    LogContent log = mAdapter.removeLogItem(position);
+                    if (log != null) {
+                        viewModel.removeLog(log.getId(), new Action1<Integer>() {
+                            @Override
+                            public void onAction(final Integer integer) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (integer == Config.RESULT_CODE_OK)
+                                            showSnackbar(getString(R.string.remove_success));
+                                        else
+                                            showSnackbar(getString(R.string.remove_fail));
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        showSnackbar(getString(R.string.remove_fail));
+                    }
                 }
             }
         });
@@ -161,6 +179,10 @@ public class AllLogsFragment extends Fragment {
             }
         }
         return data;
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
     }
 
 }

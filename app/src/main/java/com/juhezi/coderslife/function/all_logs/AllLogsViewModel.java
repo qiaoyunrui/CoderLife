@@ -29,4 +29,8 @@ public class AllLogsViewModel extends BaseViewModel<FragAllLogsBinding> {
         mResponse.getAllLogs(action);
     }
 
+    public void removeLog(String id, Action1<Integer> action) {
+        mResponse.removeLog(id, action);
+    }
+
 }
