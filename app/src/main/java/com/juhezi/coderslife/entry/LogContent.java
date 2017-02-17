@@ -26,11 +26,11 @@ public class LogContent extends BaseObservable implements Serializable, Visitabl
     public static final boolean STATE_COMPLETED = true;    //完成状态
     public static final boolean STATE_UNCOMPLETED = false;  //未完成状态
 
-    private String content;     //内容
-    private int contentType;   //内容类型
-    private boolean state;  //状态
-    private String time;    //时间
-    private String id;
+    protected String content;     //内容
+    protected int contentType;   //内容类型
+    protected boolean state;  //状态
+    protected String time;    //时间
+    protected String id;
 
     @Override
     public int type(TypeFactory factory) {

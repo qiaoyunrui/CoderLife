@@ -31,6 +31,15 @@ public class DBHelper extends SQLiteOpenHelper {
             DBContract.LOGCONTENT_TYPE + " integer, " +
             DBContract.LOGCONTENT_STATE + " integer)";    //建表语句
 
+    private static final String CREATE_LOG_DRAFT_SQL = "create table " +
+            DBContract.LOG_DRAFT_TABLE_NAME + " (" +
+            DBContract.LOGCONTENT_ID + " text primary key, " +
+            DBContract.LOGCONTENT_TIME + " text, " +
+            DBContract.LOGCONTENT_CONTENT + " text, " +
+            DBContract.LOGCONTENT_TYPE + " integer, " +
+            DBContract.LOGCONTENT_STATE + " integer, " +
+            DBContract.LOG_DRAFT_DRAFT_TYPE + "integer)";
+
     private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         this.mContext = context;
