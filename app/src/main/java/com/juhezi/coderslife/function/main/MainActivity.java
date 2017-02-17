@@ -25,6 +25,7 @@ import com.juhezi.coderslife.SingleFragmentActivity;
 import com.juhezi.coderslife.databinding.ActMainBinding;
 import com.juhezi.coderslife.entry.Title;
 import com.juhezi.coderslife.function.all_logs.AllLogsActivity;
+import com.juhezi.coderslife.function.draft_box.DraftBoxActivity;
 
 import java.util.UUID;
 
@@ -88,6 +89,8 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
                     case R.id.item_all_logs:
                         turn2AllLogsAct();
                         break;
+                    case R.id.item_draft_box:
+                        turn2DraftBoxAct();
                 }
                 return false;
             }
@@ -149,6 +152,11 @@ public class MainActivity extends SingleFragmentActivity<ActMainBinding> {
 
     private void turn2AllLogsAct() {
         Intent intent = new Intent(this, AllLogsActivity.class);
+        startActivity(intent);
+    }
+
+    private void turn2DraftBoxAct() {
+        Intent intent = new Intent(this, DraftBoxActivity.class);
         startActivity(intent);
     }
 

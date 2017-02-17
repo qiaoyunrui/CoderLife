@@ -126,8 +126,7 @@ public class AllLogsFragment extends Fragment {
                 if (!(viewHolder instanceof LogViewHolder))
                     return 0;   //0代表不滑动
                 int swipeFlag = ItemTouchHelper.LEFT;
-                int dragFlag = ItemTouchHelper.DOWN | ItemTouchHelper.UP;
-                return makeMovementFlags(dragFlag, swipeFlag);
+                return makeMovementFlags(0, swipeFlag);
             }
 
             @Override

@@ -18,6 +18,7 @@
         <activity android:name="com.juhezi.coderslife.function.add_log.AddLogActivity" />
         <activity android:name=".function.log_info.LogInfoActivity" />
         <activity android:name=".function.all_logs.AllLogsActivity" />
+        <activity android:name=".function.draft_box.DraftBoxActivity" />
     </application>
 
 </manifest>

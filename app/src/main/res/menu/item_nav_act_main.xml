@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/item_draft_box"
-        android:icon="@drawable/ic_android"
+        android:icon="@drawable/ic_draft_box"
         android:title="@string/draft_box" />
 
 </menu>
