@@ -14,11 +14,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity android:name="com.juhezi.coderslife.function.add_log.AddLogActivity" />
         <activity android:name=".function.log_info.LogInfoActivity" />
         <activity android:name=".function.all_logs.AllLogsActivity" />
         <activity android:name=".function.draft_box.DraftBoxActivity" />
     </application>
-
 </manifest>

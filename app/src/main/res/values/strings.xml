@@ -31,4 +31,5 @@
     <string name="remove_success">删除成功</string>
     <string name="remove_fail">删除失败</string>
     <string name="drag_up_load_more">上滑加载更多</string>
+    <string name="add_log">添加日志</string>
 </resources>

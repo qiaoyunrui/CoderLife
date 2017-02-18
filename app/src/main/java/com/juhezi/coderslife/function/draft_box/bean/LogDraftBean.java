@@ -8,7 +8,7 @@ import com.juhezi.coderslife.entry.LogContent;
 /**
  * Created by qiao1 on 2017/2/17.
  */
-public class LogDraft extends LogContent {
+public class LogDraftBean extends LogContent {
 
     private static final int TYPE_DRAFT_ADD = 0x100;
     private static final int TYPE_DRAFT_EDIT = 0x101;
@@ -19,7 +19,7 @@ public class LogDraft extends LogContent {
 
     private int draftType;  //草稿类型
 
-    public LogDraft(LogContent log, @DraftType int draftType) {
+    public LogDraftBean(LogContent log, @DraftType int draftType) {
         super(log.getId(),
                 log.getContent(),
                 log.getContentType(),

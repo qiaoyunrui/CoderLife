@@ -13,7 +13,7 @@ public class DBContract {
     static final String LOGCONTENT_TYPE = "type";
     static final String LOGCONTENT_STATE = "state";
 
-    static final String LOG_DRAFT_TABLE_NAME = "LogDraft";
+    static final String LOG_DRAFT_TABLE_NAME = "LogDraftHolder";
     static final String LOG_DRAFT_DRAFT_TYPE = "draft_type";    //草稿类型
 
 }

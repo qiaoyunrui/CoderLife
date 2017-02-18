@@ -65,7 +65,7 @@
                 android:id="@+id/btn_act_add_requirement_ok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:backgroundTint="@color/colorAccent"
                 android:text="@string/ok"
                 android:textColor="@android:color/white"
                 android:visibility="visible" />
