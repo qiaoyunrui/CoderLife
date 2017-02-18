@@ -4,7 +4,7 @@
     <shortcut
         android:enabled="true"
         android:icon="@drawable/ic_add_shortcut"
-        android:shortcutDisabledMessage="@string/add_log"
+        android:shortcutDisabledMessage="@string/can_not_add_log"
         android:shortcutId="compose"
         android:shortcutLongLabel="@string/add_log"
         android:shortcutShortLabel="@string/add_log">

@@ -5,6 +5,4 @@ package com.juhezi.coderslife.function.draft_box.view_holder;
  */
 public class LogDraftHolder{
     private static String TAG = "LogDraftHolder";
-
-
 }
