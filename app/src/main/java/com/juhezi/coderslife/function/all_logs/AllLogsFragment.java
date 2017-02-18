@@ -91,8 +91,12 @@ public class AllLogsFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setEmptyView(mEmptyView);
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            int transY = 0;
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                transY = dy;
                 if (dy > 5) {
                     onScrollDown();
                 }
@@ -111,8 +115,10 @@ public class AllLogsFragment extends Fragment {
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     if (((LinearLayoutManager) recyclerView.getLayoutManager())
                             .findLastVisibleItemPosition() == mAdapter.getItemCount() - 1) {
-                        if (mAdapter.addProgressBar()) {    //添加了Progressbar
-                            getDatas(null);
+                        if (transY > 0) {   //向上滑动
+                            if (mAdapter.addProgressBar()) {    //添加了Progressbar
+                                getDatas(null);
+                            }
                         }
                     }
                 }
@@ -161,7 +167,6 @@ public class AllLogsFragment extends Fragment {
             }
         });
         helper.attachToRecyclerView(mRecyclerView);
-
     }
 
     /**

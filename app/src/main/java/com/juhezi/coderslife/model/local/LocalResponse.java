@@ -107,7 +107,6 @@ public class LocalResponse implements Response {
             @Override
             public void run() {
                 String sql = "SELECT * FROM " + DBContract.LOG_CONTENT_TABLE_NAME + " LIMIT " + offset + " OFFSET " + start;
-                Log.i(TAG, "run: " + sql);
                 try {
                     SQLiteDatabase database = dbHelper.getWritableDatabase();
                     Cursor cursor = database.rawQuery(sql, null);
