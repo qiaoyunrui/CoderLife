@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LoadableButton</string>
+    <string name="test">测试</string>
 </resources>

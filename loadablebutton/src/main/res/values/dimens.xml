@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_corner_radius">5dp</dimen>
+    <dimen name="button_stroke_width">3dp</dimen>
+    <dimen name="view_loadable_button_padding">10dp</dimen>
+    <dimen name="shape_loadable_button_innerRadius">10dp</dimen>
+    <dimen name="tv_default_size">20dp</dimen>
+</resources>
