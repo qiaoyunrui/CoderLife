@@ -83,10 +83,10 @@ public class AddLogActivity extends AppCompatActivity {
         mBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                eggs();
                 if (checkContentValidity()) {
                     FabTransformation.with(mBtnAdd)
                             .transformTo(mProgressBar);
-
                     //插入数据，回到上一个界面
                     viewModel.submitLogContent(((LogTypeEntry) mSpinner.getSelectedItem()).getLogType(),
                             new Action1<Integer>() {
@@ -96,7 +96,6 @@ public class AddLogActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             if (integer == Config.RESULT_CODE_OK) {
-                                                showToast("添加日志成功");
                                                 Intent intent = new Intent();
                                                 intent.putExtra(Config.ADD_REQUIREMENT_LOG_CONTENT, mBinding.getLogContent());
                                                 setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
@@ -142,5 +141,12 @@ public class AddLogActivity extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    private void eggs() {
+        String content = mTilWrapper.getEditText().getEditableText().toString().trim();
+        if (content.equals(getString(R.string.JUHEZI_EN)) || content.equals(getString(R.string.JUHEZI_CH)))
+            showToast(getString(R.string.find_the_developer_s_name));
+    }
+
 
 }

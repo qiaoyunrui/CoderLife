@@ -35,4 +35,7 @@
     <string name="can_not_add_log">无法添加日志</string>
     <string name="add">添加</string>
     <string name="update">更新</string>
+    <string name="find_the_developer_s_name">不小心发现了开发者的名字。</string>
+    <string name="JUHEZI_EN">Juhezi</string>
+    <string name="JUHEZI_CH">居合子</string>
 </resources>
