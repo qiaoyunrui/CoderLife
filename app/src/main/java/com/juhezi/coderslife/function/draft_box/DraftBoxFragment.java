@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 
 import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragDraftBoxBinding;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
+import com.juhezi.coderslife.function.draft_box.view_holder.LogDraftHolder;
 import com.juhezi.coderslife.tools.Action;
 
 /**
@@ -37,6 +40,7 @@ public class DraftBoxFragment extends Fragment {
     private View mEmptyView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private DraftBoxAdapter adapter;
 
     @Nullable
     @Override
@@ -62,6 +66,23 @@ public class DraftBoxFragment extends Fragment {
     }
 
     private void initRecyclerView(FragDraftBoxBinding binding) {
+        adapter = new DraftBoxAdapter();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setAdapter(adapter);
+        adapter.setEmptyView(mEmptyView);
+        adapter.setDraftItemClickListener(new LogDraftHolder.onClickListener() {
+            @Override
+            public void onItemClick(LogDraftBean logDraftBean) {
+
+            }
+
+            @Override
+            public void onLoadableClick(LogDraftBean logDraftBean) {
+
+            }
+        });
     }
+
+
 
 }

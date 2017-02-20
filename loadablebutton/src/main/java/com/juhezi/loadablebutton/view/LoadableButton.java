@@ -3,6 +3,7 @@ package com.juhezi.loadablebutton.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -20,7 +21,7 @@ import com.juhezi.loadablebutton.R;
 public class LoadableButton extends FrameLayout {
     private static String TAG = "LoadableButton";
 
-    private String text = "";
+    private String text;
     private float textSize;
 
     private OnClickListener onClickListener;
@@ -29,7 +30,6 @@ public class LoadableButton extends FrameLayout {
 
     private TextView textView;
     private ProgressBar progressBar;
-    private View rootView;
 
     public LoadableButton(Context context) {
         super(context);
@@ -47,12 +47,12 @@ public class LoadableButton extends FrameLayout {
     }
 
     private void init(Context context) {
-        rootView = LayoutInflater.from(context).inflate(R.layout.view_loadable_button, this, false);
+        LayoutInflater.from(context).inflate(R.layout.view_loadable_button, this, true);
         textView = (TextView) findViewById(R.id.tv_text);
         progressBar = (ProgressBar) findViewById(R.id.pb_load);
         textView.setText(text);
         textView.setTextSize(textSize);
-        rootView.setOnClickListener(new OnClickListener() {
+        textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onClickListener != null) {

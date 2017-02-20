@@ -36,7 +36,8 @@
 
                 <include
                     android:id="@+id/view_empty"
-                    layout="@layout/layout_empty" />
+                    layout="@layout/layout_empty"
+                    android:visibility="invisible" />
 
             </FrameLayout>
 

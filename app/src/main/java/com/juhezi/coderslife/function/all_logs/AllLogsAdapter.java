@@ -1,17 +1,14 @@
 package com.juhezi.coderslife.function.all_logs;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.juhezi.coderslife.R;
-import com.juhezi.coderslife.databinding.ItemAllLogsBinding;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.function.all_logs.bean.ProgressBean;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
+import com.juhezi.coderslife.multitype.factory.ItemTypefactory;
 import com.juhezi.coderslife.multitype.decorate.Visitable;
 import com.juhezi.coderslife.multitype.factory.TypeFactory;
 import com.juhezi.coderslife.multitype.viewholder.BaseViewHolder;

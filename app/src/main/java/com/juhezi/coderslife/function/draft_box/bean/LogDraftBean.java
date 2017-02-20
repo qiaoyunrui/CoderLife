@@ -4,14 +4,16 @@ import android.databinding.Bindable;
 import android.support.annotation.IntDef;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.multitype.decorate.Visitable;
+import com.juhezi.coderslife.multitype.factory.TypeFactory;
 
 /**
  * Created by qiao1 on 2017/2/17.
  */
 public class LogDraftBean extends LogContent {
 
-    private static final int TYPE_DRAFT_ADD = 0x100;
-    private static final int TYPE_DRAFT_EDIT = 0x101;
+    public static final int TYPE_DRAFT_ADD = 0x100;
+    public static final int TYPE_DRAFT_EDIT = 0x101;
 
     @IntDef({TYPE_DRAFT_ADD, TYPE_DRAFT_EDIT})
     public @interface DraftType {

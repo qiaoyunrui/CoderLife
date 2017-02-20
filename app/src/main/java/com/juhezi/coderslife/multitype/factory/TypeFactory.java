@@ -10,6 +10,7 @@ import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.function.all_logs.bean.ProgressBean;
 import com.juhezi.coderslife.function.all_logs.bean.TimeBean;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.multitype.viewholder.BaseViewHolder;
 
 /**
@@ -23,6 +24,8 @@ public abstract class TypeFactory {
     public abstract int type(TimeBean timeBean);
 
     public abstract int type(ProgressBean progressBean);
+
+    public abstract int type(LogDraftBean logDraftBean);
 
     protected RecyclerView.Adapter adapter;
 

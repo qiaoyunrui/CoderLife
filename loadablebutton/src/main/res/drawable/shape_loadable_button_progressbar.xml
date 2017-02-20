@@ -8,7 +8,7 @@
     <shape
         android:innerRadius="@dimen/shape_loadable_button_innerRadius"
         android:shape="ring"
-        android:thickness="@dimen/shape_loadable_button_innerRadius"
+        android:thickness="@dimen/shape_loadable_button_thickness"
         android:useLevel="false">
 
         <gradient

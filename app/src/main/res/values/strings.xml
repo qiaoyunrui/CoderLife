@@ -33,4 +33,6 @@
     <string name="drag_up_load_more">上滑加载更多</string>
     <string name="add_log">添加日志</string>
     <string name="can_not_add_log">无法添加日志</string>
+    <string name="add">添加</string>
+    <string name="update">更新</string>
 </resources>

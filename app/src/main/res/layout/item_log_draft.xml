@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,6 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/lb_commit"
                 android:orientation="vertical">
 
                 <TextView
@@ -27,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:singleLine="true"
-                    android:text="测试"
+                    android:text="@{logDraft.content}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/item_requirement_text_size" />
 
@@ -36,9 +39,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/item_log_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="2017/2/20" />
+                    android:text="@{logDraft.time}"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
+
+            <com.juhezi.loadablebutton.view.LoadableButton
+                android:id="@+id/lb_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="@dimen/item_log_margin"
+                android:layout_marginTop="@dimen/item_log_margin"
+                android:background="?selectableItemBackground"
+                app:text="@string/add"
+                app:textSize="@dimen/item_requirement_text_size" />
 
         </RelativeLayout>
 
