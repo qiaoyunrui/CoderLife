@@ -104,7 +104,8 @@ public class AllLogsFragment extends Fragment {
                     onScrollUp();
                 }
                 if (((LinearLayoutManager) recyclerView.getLayoutManager())
-                        .findLastVisibleItemPosition() == mAdapter.getItemCount() - 1 && !hasShown) {
+                        .findLastVisibleItemPosition() == mAdapter.getItemCount() - 1 && !hasShown &&
+                        recyclerView.getLayoutManager().getChildCount() < mAdapter.getItemCount()) {
                     hasShown = true;
                     showToast(getString(R.string.drag_up_load_more));
                 }
@@ -125,8 +126,6 @@ public class AllLogsFragment extends Fragment {
             }
         });
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-            //设置滑动类型的标记。需要设置两种类型的flag，即dragFlags 和 swipeFlags，
-            // 分别代表着拖拽标记和滑动标记。
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                 if (!(viewHolder instanceof LogViewHolder))
