@@ -2,6 +2,7 @@ package com.juhezi.coderslife.function.add_log;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -95,8 +96,13 @@ public class AddLogActivity extends AppCompatActivity {
             public void onClick(View v) {
                 eggs();
                 if (checkContentValidity()) {
-                    FabTransformation.with(mBtnAdd)
-                            .transformTo(mProgressBar);
+                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        FabTransformation.with(mBtnAdd)
+                                .transformTo(mProgressBar);
+                    } else {
+                        mBtnAdd.setVisibility(View.INVISIBLE);
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
                     //插入数据，回到上一个界面
                     viewModel.submitLogContent(((LogTypeEntry) mSpinner.getSelectedItem()).getLogType(),
                             new Action1<Integer>() {
@@ -111,8 +117,14 @@ public class AddLogActivity extends AppCompatActivity {
                                                 setResult(Config.TAG_ADD_REQUIREMENT_RETURN, intent);
                                                 finish();
                                             } else {
-                                                FabTransformation.with(mBtnAdd)
-                                                        .transformFrom(mProgressBar);
+                                                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                                    FabTransformation.with(mBtnAdd)
+                                                            .transformFrom(mProgressBar);
+                                                } else {
+                                                    mBtnAdd.setVisibility(View.INVISIBLE);
+                                                    mProgressBar.setVisibility(View.INVISIBLE);
+                                                }
+
                                                 showToast("添加日志失败");
                                             }
                                         }

@@ -3,6 +3,7 @@ package com.juhezi.coderslife.function.log_info;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -144,15 +145,26 @@ public class LogInfoActivity extends AppCompatActivity {
 
     private void showProgressBar() {
         if (mProgressBar.getVisibility() != View.VISIBLE) {
-            FabTransformation.with(mBtnSave)
-                    .transformTo(mProgressBar);
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                FabTransformation.with(mBtnSave)
+                        .transformTo(mProgressBar);
+            } else {
+                mBtnSave.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 
     private void hideProgressBar() {
         if (mProgressBar.getVisibility() == View.VISIBLE) {
-            FabTransformation.with(mBtnSave)
-                    .transformFrom(mProgressBar);
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                FabTransformation.with(mBtnSave)
+                        .transformFrom(mProgressBar);
+            } else {
+                mBtnSave.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
