@@ -19,7 +19,7 @@
 
 - [ ] 统计页
 
-- [ ] 草稿箱
+- [x] 草稿箱
 
 - [x] 图标
 
@@ -36,4 +36,4 @@
 
 ## APK
 
-[APK点此下载](./apk/CoderLife_0.0.1.apk)
+[APK点此下载](./apk/coderlife_release_1.0.apk)
