@@ -71,14 +71,14 @@ public class DraftBoxAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void removeData(Visitable data) {
-        // TODO: 2017/2/20
-        if (data instanceof LogDraftBean) {
-        }
+    public void removeData(int position) {
+        datas.remove(position);
+        notifyItemRemoved(position);
     }
 
     public void removeAllData() {
-        // TODO: 2017/2/20
+        datas.clear();
+        notifyDataSetChanged();
     }
 
     private void setClickListener(BaseViewHolder holder) {

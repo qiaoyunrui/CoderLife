@@ -21,9 +21,14 @@ public class Config {
 
     public static final int TAG_MAIN_FRAGMENT_TO_ADD_REQUIREMENT = 0x101;
 
+    public static final int TAG_DRAFT_FRAGMENT_TO_ADD_REQUIREMENT = 0x105;
+
     public static final int TAG_MAIN_FRAGMENT_TO_LOG_INFO_ACT = 0x102;
+
+    public static final int TAG_DRAFT_FRAGMENT_TO_LOG_INFO_ACT = 0x106;
 
     public static final int TAG_LOG_INFO_RETURN_SAVE = 0x103;
 
     public static final int TAG_LOG_INFO_RETURN_DELETE = 0x104;
+
 }

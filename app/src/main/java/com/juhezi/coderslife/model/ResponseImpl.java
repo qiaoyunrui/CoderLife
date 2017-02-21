@@ -87,4 +87,8 @@ public class ResponseImpl implements Response {
         mLocalResponse.getDrafts(action);
     }
 
+    @Override
+    public void removeDraft(String id, Action1<Integer> action) {
+        mLocalResponse.removeDraft(id, action);
+    }
 }

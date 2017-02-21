@@ -42,7 +42,6 @@ public class AddLogActivity extends AppCompatActivity {
     private Spinner mSpinner;
     private LogTypeSpinnerAdapter mAdapter;
     private List<LogTypeEntry> mLogTypeEntries = new ArrayList<>();
-    ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +51,18 @@ public class AddLogActivity extends AppCompatActivity {
         initActionBar();
         initView();
         initLogType();
+        initData();
+    }
+
+
+    private void initData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            LogContent log = (LogContent) intent.getSerializableExtra(Config.ADD_REQUIREMENT_LOG_CONTENT);
+            if (log != null) {
+                viewModel.setLog(log);
+            }
+        }
     }
 
     /**

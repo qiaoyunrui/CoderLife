@@ -23,8 +23,11 @@ public class LogDraftBean extends LogContent {
 
     public LogDraftBean(String id, String content, int contentType, boolean state, String time, int draftType) {
         super(id, content, contentType, state, time);
+        this.log = new LogContent(id, content, contentType, state, time);
         this.draftType = draftType;
     }
+
+    private LogContent log;
 
     public LogDraftBean(LogContent log, @DraftType int draftType) {
         super(log.getId(),
@@ -32,6 +35,7 @@ public class LogDraftBean extends LogContent {
                 log.getContentType(),
                 log.getState(),
                 log.getTime());
+        this.log = log;
         this.draftType = draftType;
     }
 
@@ -43,5 +47,9 @@ public class LogDraftBean extends LogContent {
     @Bindable
     public void setDraftType(int draftType) {
         this.draftType = draftType;
+    }
+
+    public LogContent getLog() {
+        return log;
     }
 }

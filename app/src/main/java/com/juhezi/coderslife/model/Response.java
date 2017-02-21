@@ -60,4 +60,10 @@ public interface Response {
 
     void getDrafts(Action1<List<LogDraftBean>> action);
 
+    /**
+     * 删除草稿
+     * @param id
+     * @param action
+     */
+    void removeDraft(String id, Action1<Integer> action);
 }

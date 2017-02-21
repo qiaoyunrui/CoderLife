@@ -27,6 +27,10 @@ public class AddLogViewModel extends
                 new LogContent("", LogContent.TYPE_REQUIREMENT));
     }
 
+    public void setLog(LogContent log) {
+        binding.setLogContent(log);
+    }
+
     /**
      * 提交日志
      *

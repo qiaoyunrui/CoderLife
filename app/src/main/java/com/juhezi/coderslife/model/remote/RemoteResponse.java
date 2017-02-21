@@ -75,4 +75,9 @@ public class RemoteResponse implements Response {
     public void getDrafts(Action1<List<LogDraftBean>> action) {
 
     }
+
+    @Override
+    public void removeDraft(String id, Action1<Integer> action) {
+
+    }
 }

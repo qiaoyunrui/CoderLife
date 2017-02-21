@@ -28,10 +28,10 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
     }
 
     @Override
-    public void bindViewData(final LogDraftBean data, int position) {
+    public void bindViewData(final LogDraftBean data, final int position) {
         binding.setLogDraft(data);
         binding.executePendingBindings();
-        if(data.getDraftType() == LogDraftBean.TYPE_DRAFT_ADD) {
+        if (data.getDraftType() == LogDraftBean.TYPE_DRAFT_ADD) {
             loadableButton.setText("添加");
         } else {
             loadableButton.setText("更新");
@@ -40,7 +40,7 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onLoadableClick(loadableButton, data);
+                    listener.onLoadableClick(loadableButton, data, position);
                 }
             }
         });
@@ -48,7 +48,7 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(data);
+                    listener.onItemClick(data, position);
                 }
             }
         });
@@ -62,9 +62,9 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
 
     public interface onClickListener {
 
-        void onItemClick(LogDraftBean logDraftBean);
+        void onItemClick(LogDraftBean logDraftBean, int position);
 
-        void onLoadableClick(LoadableButton button, LogDraftBean logDraftBean);
+        void onLoadableClick(LoadableButton button, LogDraftBean logDraftBean, int position);
     }
 
 }

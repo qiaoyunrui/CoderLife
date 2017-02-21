@@ -212,11 +212,36 @@ public class LocalResponse implements Response {
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     db.execSQL(sql);
                     db.close();
-                    action.onAction(Config.RESULT_CODE_OK);
+                    if (action != null)
+                        action.onAction(Config.RESULT_CODE_OK);
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    Log.i(TAG, "run: Hello");
-                    action.onAction(Config.RESULT_CODE_ERROR);
+                    if (action != null)
+                        action.onAction(Config.RESULT_CODE_ERROR);
+                }
+            }
+        }.start();
+    }
+
+    @Override
+    public void removeDraft(final String id, final Action1<Integer> action) {
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "DELETE FROM " + DBContract.LOG_DRAFT_TABLE_NAME
+                        + " WHERE " + DBContract.LOGCONTENT_ID
+                        + " = '" + id
+                        + "'";
+                try {
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    db.execSQL(sql);
+                    db.close();
+                    if (action != null)
+                        action.onAction(Config.RESULT_CODE_OK);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    if (action != null)
+                        action.onAction(Config.RESULT_CODE_ERROR);
                 }
             }
         }.start();
