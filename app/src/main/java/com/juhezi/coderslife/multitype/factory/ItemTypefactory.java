@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.juhezi.coderslife.R;
@@ -51,10 +52,12 @@ public class ItemTypefactory extends TypeFactory {
         super(adapter);
     }
 
-    @AllLogsItemLayout
     @Override
     public int type(LogContent logEntry) {
-        return LOG_ITEM_LAYOUT;
+        if (logEntry instanceof LogDraftBean)
+            return ITEM_LOG_DRAFT_LAYOUT;
+        else
+            return LOG_ITEM_LAYOUT;
     }
 
     @AllLogsItemLayout
@@ -74,7 +77,6 @@ public class ItemTypefactory extends TypeFactory {
     public int type(LogDraftBean logDraftBean) {
         return ITEM_LOG_DRAFT_LAYOUT;
     }
-
 
     @Override
     public BaseViewHolder createViewHolder(int type, View itemView) {

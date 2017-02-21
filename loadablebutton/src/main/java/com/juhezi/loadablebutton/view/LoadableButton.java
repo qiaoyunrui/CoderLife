@@ -38,12 +38,11 @@ public class LoadableButton extends FrameLayout {
 
     public LoadableButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
         TypedArray typedArray = context.obtainStyledAttributes(attrs,
                 R.styleable.LoadableButton);
         text = typedArray.getString(R.styleable.LoadableButton_text);
-        typedArray.getDimension(R.styleable.LoadableButton_textSize, 20);
         typedArray.recycle();
+        init(context);
     }
 
     private void init(Context context) {
@@ -51,7 +50,6 @@ public class LoadableButton extends FrameLayout {
         textView = (TextView) findViewById(R.id.tv_text);
         progressBar = (ProgressBar) findViewById(R.id.pb_load);
         textView.setText(text);
-        textView.setTextSize(textSize);
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,8 +65,8 @@ public class LoadableButton extends FrameLayout {
      */
     public void load() {
         if (!isLoading) {
-            textView.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.INVISIBLE);
+            textView.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
             isLoading = true;
         }
     }
@@ -91,5 +89,14 @@ public class LoadableButton extends FrameLayout {
     @Override
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        textView.setText(text);
+    }
+
+    public String getText() {
+        return text;
     }
 }

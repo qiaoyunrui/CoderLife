@@ -3,6 +3,7 @@ package com.juhezi.coderslife.model.remote;
 import android.content.Context;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.Config;
@@ -62,6 +63,16 @@ public class RemoteResponse implements Response {
 
     @Override
     public void getPartLogs(int start, int offset, Action1<List<LogContent>> action) {
+
+    }
+
+    @Override
+    public void addDraft(LogDraftBean draft, Action1<Integer> action) {
+
+    }
+
+    @Override
+    public void getDrafts(Action1<List<LogDraftBean>> action) {
 
     }
 }

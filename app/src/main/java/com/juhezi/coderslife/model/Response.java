@@ -1,6 +1,7 @@
 package com.juhezi.coderslife.model;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.tools.Action;
 import com.juhezi.coderslife.tools.Action1;
 
@@ -48,10 +49,15 @@ public interface Response {
 
     /**
      * 分页查询
+     *
      * @param start
      * @param offset
      * @param action
      */
     void getPartLogs(int start, int offset, Action1<List<LogContent>> action);
+
+    void addDraft(LogDraftBean draft, Action1<Integer> action);
+
+    void getDrafts(Action1<List<LogDraftBean>> action);
 
 }

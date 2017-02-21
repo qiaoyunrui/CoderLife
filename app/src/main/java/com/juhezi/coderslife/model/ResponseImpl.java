@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.model.local.LocalResponse;
 import com.juhezi.coderslife.model.remote.RemoteResponse;
 import com.juhezi.coderslife.tools.Action1;
@@ -74,6 +75,16 @@ public class ResponseImpl implements Response {
     @Override
     public void getPartLogs(int start, int offset, Action1<List<LogContent>> action) {
         mLocalResponse.getPartLogs(start, offset, action);
+    }
+
+    @Override
+    public void addDraft(LogDraftBean draft, Action1<Integer> action) {
+        mLocalResponse.addDraft(draft, action);
+    }
+
+    @Override
+    public void getDrafts(Action1<List<LogDraftBean>> action) {
+        mLocalResponse.getDrafts(action);
     }
 
 }

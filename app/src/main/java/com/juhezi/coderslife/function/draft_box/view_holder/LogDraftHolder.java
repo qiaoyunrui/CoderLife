@@ -1,5 +1,6 @@
 package com.juhezi.coderslife.function.draft_box.view_holder;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -30,11 +31,16 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
     public void bindViewData(final LogDraftBean data, int position) {
         binding.setLogDraft(data);
         binding.executePendingBindings();
+        if(data.getDraftType() == LogDraftBean.TYPE_DRAFT_ADD) {
+            loadableButton.setText("添加");
+        } else {
+            loadableButton.setText("更新");
+        }
         loadableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onLoadableClick(data);
+                    listener.onLoadableClick(loadableButton, data);
                 }
             }
         });
@@ -58,8 +64,7 @@ public class LogDraftHolder extends BaseViewHolder<LogDraftBean, ItemLogDraftBin
 
         void onItemClick(LogDraftBean logDraftBean);
 
-        void onLoadableClick(LogDraftBean logDraftBean);
+        void onLoadableClick(LoadableButton button, LogDraftBean logDraftBean);
     }
-
 
 }

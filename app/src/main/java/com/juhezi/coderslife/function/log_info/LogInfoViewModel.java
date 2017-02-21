@@ -6,6 +6,7 @@ import android.util.Log;
 import com.juhezi.coderslife.BaseViewModel;
 import com.juhezi.coderslife.databinding.ActLogInfoBinding;
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.tools.Action1;
 
 /**
@@ -34,6 +35,11 @@ public class LogInfoViewModel extends BaseViewModel<ActLogInfoBinding> {
 
     protected void delete(Action1<Integer> action1) {
         mResponse.removeLog(binding.getLogContent().getId(), action1);
+    }
+
+    void addDraft() {
+        LogDraftBean draft = new LogDraftBean(binding.getLogContent(), LogDraftBean.TYPE_DRAFT_EDIT);
+        mResponse.addDraft(draft, null);
     }
 
 }

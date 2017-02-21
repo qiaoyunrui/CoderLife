@@ -13,7 +13,9 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/item_log_margin">
+        android:layout_margin="@dimen/item_log_margin"
+        android:background="?selectableItemBackground"
+        android:clickable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,9 +54,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="@dimen/item_log_margin"
                 android:layout_marginTop="@dimen/item_log_margin"
-                android:background="?selectableItemBackground"
-                app:text="@string/add"
-                app:textSize="@dimen/item_requirement_text_size" />
+                android:clickable="true" />
 
         </RelativeLayout>
 

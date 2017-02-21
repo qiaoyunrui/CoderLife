@@ -8,7 +8,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -144,9 +143,17 @@ public class AddLogActivity extends AppCompatActivity {
 
     private void eggs() {
         String content = mTilWrapper.getEditText().getEditableText().toString().trim();
-        if (content.equals(getString(R.string.JUHEZI_EN)) || content.equals(getString(R.string.JUHEZI_CH)))
+        if (content.equals(getString(R.string.juhezi_en)) || content.equals(getString(R.string.juhezi_ch)))
             showToast(getString(R.string.find_the_developer_s_name));
     }
 
-
+    @Override
+    public void onBackPressed() {
+        String content = mTilWrapper.getEditText().getEditableText().toString().trim();
+        if (content != null && content.length() != 0) {
+            showToast(getString(R.string.store_in_draft_box));
+            viewModel.addDraft();
+        }
+        super.onBackPressed();
+    }
 }

@@ -36,6 +36,7 @@
     <string name="add">添加</string>
     <string name="update">更新</string>
     <string name="find_the_developer_s_name">不小心发现了开发者的名字。</string>
-    <string name="JUHEZI_EN">Juhezi</string>
-    <string name="JUHEZI_CH">居合子</string>
+    <string name="juhezi_en">Juhezi</string>
+    <string name="juhezi_ch">居合子</string>
+    <string name="store_in_draft_box">已经存入到草稿箱了</string>
 </resources>

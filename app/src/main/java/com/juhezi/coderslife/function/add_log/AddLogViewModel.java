@@ -6,6 +6,7 @@ import com.juhezi.coderslife.BaseViewModel;
 import com.juhezi.coderslife.databinding.ActAddLogBinding;
 import com.juhezi.coderslife.entry.LogContent;
 import com.juhezi.coderslife.entry.Title;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.tools.Action1;
 
 /**
@@ -36,6 +37,11 @@ public class AddLogViewModel extends
         LogContent logContent = binding.getLogContent();
         logContent.setContentType(contentType);
         mResponse.addLogContent(logContent, action);
+    }
+
+    void addDraft() {
+        LogDraftBean draft = new LogDraftBean(binding.getLogContent(), LogDraftBean.TYPE_DRAFT_ADD);
+        mResponse.addDraft(draft, null);
     }
 
 }

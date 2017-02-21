@@ -35,12 +35,14 @@ public class LogInfoActivity extends AppCompatActivity {
     private Button mBtnSave;
     private ProgressBar mProgressBar;
     private EditText mEtContent;
+    private String preContent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActLogInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.act_log_info);
         viewModel = new LogInfoViewModel(binding, this, getInputLogContent());
+        preContent = viewModel.getLogContent().getContent();
         initActionBar(getInputLogContent());
         initEvent();
     }
@@ -197,6 +199,15 @@ public class LogInfoActivity extends AppCompatActivity {
                 .create().show();
     }
 
+    @Override
+    public void onBackPressed() {
+        String content = mEtContent.getText().toString().trim();
+        if (content != null && !content.equals(preContent)) {
+            viewModel.addDraft();
+            showToast(getString(R.string.store_in_draft_box));
+        }
+        super.onBackPressed();
+    }
 }
 
 

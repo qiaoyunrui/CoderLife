@@ -4,11 +4,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,13 @@ import com.juhezi.coderslife.R;
 import com.juhezi.coderslife.databinding.FragDraftBoxBinding;
 import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.function.draft_box.view_holder.LogDraftHolder;
+import com.juhezi.coderslife.multitype.decorate.Visitable;
 import com.juhezi.coderslife.tools.Action;
+import com.juhezi.coderslife.tools.Action1;
+import com.juhezi.loadablebutton.view.LoadableButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qiao1 on 2017/2/17.
@@ -51,6 +59,7 @@ public class DraftBoxFragment extends Fragment {
         mEmptyView = view.findViewById(R.id.view_empty);
         initView(binding);
         initRecyclerView(binding);
+        initData(null);
         return view;
     }
 
@@ -73,16 +82,41 @@ public class DraftBoxFragment extends Fragment {
         adapter.setDraftItemClickListener(new LogDraftHolder.onClickListener() {
             @Override
             public void onItemClick(LogDraftBean logDraftBean) {
-
             }
 
             @Override
-            public void onLoadableClick(LogDraftBean logDraftBean) {
+            public void onLoadableClick(LoadableButton loadableButton, LogDraftBean logDraftBean) {
+                loadableButton.load();
+            }
+        });
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData(new Action() {
+                    @Override
+                    public void onAction() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
         });
     }
 
-
-
+    private void initData(final Action action) {
+        viewModel.getDrafts(new Action1<List<LogDraftBean>>() {
+            @Override
+            public void onAction(final List<LogDraftBean> drafts) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<Visitable> datas = new ArrayList<Visitable>(drafts);
+                        adapter.setDatas(datas);
+                        if (action != null)
+                            action.onAction();
+                    }
+                });
+            }
+        });
+    }
 }

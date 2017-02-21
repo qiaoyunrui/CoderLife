@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.juhezi.coderslife.entry.LogContent;
+import com.juhezi.coderslife.function.draft_box.bean.LogDraftBean;
 import com.juhezi.coderslife.model.Response;
 import com.juhezi.coderslife.tools.Action1;
 import com.juhezi.coderslife.tools.BoolUtil;
@@ -122,6 +123,52 @@ public class LocalResponse implements Response {
     }
 
     @Override
+    public void addDraft(final LogDraftBean draft, final Action1<Integer> action) {
+        if (draft == null) return;
+        new Thread() {
+            @Override
+            public void run() {
+                SQLiteDatabase database = dbHelper.getWritableDatabase();
+                try {
+                    if (database.insert(DBContract.LOG_DRAFT_TABLE_NAME, null, createContentValues(draft)) != -1) {
+                        if (action != null)
+                            action.onAction(Config.RESULT_CODE_OK);
+                    } else {
+                        if (action != null)
+                            action.onAction(Config.RESULT_CODE_ERROR);
+                    }
+                    database.close();
+                } catch (Exception e) {
+                    if (action != null)
+                        action.onAction(Config.RESULT_CODE_ERROR);
+                }
+            }
+        }.start();
+    }
+
+    @Override
+    public void getDrafts(final Action1<List<LogDraftBean>> action) {
+        if (action == null)
+            return;
+        new Thread() {
+            @Override
+            public void run() {
+                String sql = "SELECT * FROM " +
+                        DBContract.LOG_DRAFT_TABLE_NAME;
+                try {
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+                    Cursor cursor = database.rawQuery(sql, null);
+                    List<LogDraftBean> list = cursor2LogDraftBean(cursor);
+                    action.onAction(list);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    action.onAction(new ArrayList<LogDraftBean>());
+                }
+            }
+        }.start();
+    }
+
+    @Override
     public void updateLog(final LogContent logContent, final Action1<Integer> action1) {
         if (logContent == null)
             return;
@@ -211,6 +258,22 @@ public class LocalResponse implements Response {
         return list;
     }
 
+    private static List<LogDraftBean> cursor2LogDraftBean(Cursor cursor) {
+        List<LogDraftBean> list = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            list.add(new LogDraftBean(
+                    cursor.getString(0),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    BoolUtil.int2Bool(cursor.getInt(4)),
+                    cursor.getString(1),
+                    cursor.getInt(5))
+            );
+        }
+        cursor.close();
+        return list;
+    }
+
     /**
      * 装载ContentValues
      *
@@ -224,6 +287,17 @@ public class LocalResponse implements Response {
         values.put(DBContract.LOGCONTENT_STATE, BoolUtil.bool2Int(logContent.getState()));
         values.put(DBContract.LOGCONTENT_TYPE, logContent.getContentType());
         values.put(DBContract.LOGCONTENT_ID, logContent.getId());
+        return values;
+    }
+
+    private ContentValues createContentValues(LogDraftBean draft) {
+        ContentValues values = new ContentValues();
+        values.put(DBContract.LOGCONTENT_TIME, draft.getTime());
+        values.put(DBContract.LOGCONTENT_CONTENT, draft.getContent());
+        values.put(DBContract.LOGCONTENT_STATE, BoolUtil.bool2Int(draft.getState()));
+        values.put(DBContract.LOGCONTENT_TYPE, draft.getContentType());
+        values.put(DBContract.LOGCONTENT_ID, draft.getId());
+        values.put(DBContract.LOG_DRAFT_DRAFT_TYPE, draft.getDraftType());
         return values;
     }
 

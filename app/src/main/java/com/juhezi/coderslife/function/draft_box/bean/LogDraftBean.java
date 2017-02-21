@@ -21,6 +21,11 @@ public class LogDraftBean extends LogContent {
 
     private int draftType;  //草稿类型
 
+    public LogDraftBean(String id, String content, int contentType, boolean state, String time, int draftType) {
+        super(id, content, contentType, state, time);
+        this.draftType = draftType;
+    }
+
     public LogDraftBean(LogContent log, @DraftType int draftType) {
         super(log.getId(),
                 log.getContent(),

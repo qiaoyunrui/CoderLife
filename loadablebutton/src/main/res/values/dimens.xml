@@ -7,4 +7,5 @@
     <dimen name="tv_default_size">20dp</dimen>
     <dimen name="shape_loadable_button_thickness">5dp</dimen>
     <dimen name="view_loadable_button_progressbar_size">25dp</dimen>
+    <dimen name="view_loadable_button_text_size">17sp</dimen>
 </resources>

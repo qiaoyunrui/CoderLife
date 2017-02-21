@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/colorAccent"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textSize="@dimen/view_loadable_button_text_size"/>
 
     <ProgressBar
         android:id="@+id/pb_load"

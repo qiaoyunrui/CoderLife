@@ -57,12 +57,18 @@ public class DraftBoxAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return datas.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return datas.get(position).type(factory);
+    }
+
     public void setEmptyView(View emptyView) {
         this.emptyView = emptyView;
     }
 
     public void setDatas(List<Visitable> datas) {
         this.datas = datas;
+        notifyDataSetChanged();
     }
 
     public void removeData(Visitable data) {
