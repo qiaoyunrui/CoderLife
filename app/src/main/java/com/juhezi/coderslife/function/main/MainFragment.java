@@ -179,10 +179,15 @@ public class MainFragment extends Fragment {
             public void onAction(LogContent logContent) {
                 response.updateLog(logContent, new Action1<Integer>() {
                     @Override
-                    public void onAction(Integer integer) {
-                        if (integer == Config.RESULT_CODE_ERROR) {
-                            showToast(getString(R.string.update_data_error));
-                        }
+                    public void onAction(final Integer integer) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (integer == Config.RESULT_CODE_ERROR) {
+                                    showToast(getString(R.string.update_data_error));
+                                }
+                            }
+                        });
                     }
                 });
             }
