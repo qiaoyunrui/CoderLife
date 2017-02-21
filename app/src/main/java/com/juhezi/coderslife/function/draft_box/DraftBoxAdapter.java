@@ -93,4 +93,13 @@ public class DraftBoxAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.draftItemClickListener = listener;
     }
 
+    public LogDraftBean getDraft(int position) {
+        if (datas == null || datas.size() <= position)
+            return null;
+        Visitable visitable = datas.get(position);
+        if (!(visitable instanceof LogDraftBean))
+            return null;
+        return (LogDraftBean) visitable;
+    }
+
 }

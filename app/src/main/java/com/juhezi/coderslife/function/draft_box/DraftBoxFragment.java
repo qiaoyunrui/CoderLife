@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -155,6 +156,34 @@ public class DraftBoxFragment extends Fragment {
                 });
             }
         });
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                if (!(viewHolder instanceof LogDraftHolder))
+                    return 0;
+                return makeMovementFlags(0, ItemTouchHelper.LEFT);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                if (direction == ItemTouchHelper.LEFT) {
+                    int position = viewHolder.getAdapterPosition();
+                    LogDraftBean draft = adapter.getDraft(position);
+                    if (draft != null) {
+                        viewModel.removeDraft(draft.getId());
+                        adapter.removeData(position);
+                    } else {
+                        showToast(getString(R.string.remove_fail));
+                    }
+                }
+            }
+        });
+        helper.attachToRecyclerView(mRecyclerView);
     }
 
     private void initData(final Action action) {
