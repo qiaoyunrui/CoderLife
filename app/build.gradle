@@ -12,7 +12,14 @@ def app_name_release = "程序员日志"
 def debug_suffix = "debug"
 
 android {
-
+    signingConfigs {
+        config {
+            keyAlias 'Juhezi'
+            keyPassword 'qiaoyunrui1995'
+            storeFile file('E:/android_keystore/juhezi_keystore.jks')
+            storePassword 'qiaoyunrui1995'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
     defaultConfig {
