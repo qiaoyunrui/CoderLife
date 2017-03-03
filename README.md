@@ -29,10 +29,10 @@
 
 ## 截图
 
- ![pic_1](./screenshots/pic_1.png)
- ![pic_2](./screenshots/pic_2.png)
- ![pic_3](./screenshots/pic_3.png)
- ![pic_4](./screenshots/pic_4.png)
+<img src="./screenshots/pic_1.png" height="300">
+<img src="./screenshots/pic_2.png" height="300">
+<img src="./screenshots/pic_3.png" height="300">
+<img src="./screenshots/pic_4.png" height="300">
 
 ## APK
 
