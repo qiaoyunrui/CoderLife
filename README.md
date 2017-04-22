@@ -37,3 +37,7 @@
 ## APK
 
 [APK点此下载](./apk/coderlife_release_1.0.apk)
+
+## 重构进度
+
+真正的 MVVM + 模块化 + Kotlin 重构
