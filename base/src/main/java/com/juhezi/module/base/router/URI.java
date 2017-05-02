@@ -1,6 +1,5 @@
 package com.juhezi.module.base.router;
 
-import android.os.Bundle;
 import android.support.annotation.StringDef;
 
 /**
@@ -10,7 +9,7 @@ import android.support.annotation.StringDef;
  * <p>
  * 例如:
  */
-public abstract class URI {
+public class URI {
 
     private static final String separator = "://";
 
