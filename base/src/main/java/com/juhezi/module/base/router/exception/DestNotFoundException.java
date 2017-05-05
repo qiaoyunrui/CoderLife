@@ -8,7 +8,7 @@ public class DestNotFoundException extends RuntimeException {
 
     private static final String CODE = "404";
 
-    private static final String MESSAGE = "The destination has not found anything matching the Request-URI.";
+    private static final String MESSAGE = "The destination has not found anything matching the Request-Uri.";
 
     public DestNotFoundException() {
         super(CODE + " " + MESSAGE);

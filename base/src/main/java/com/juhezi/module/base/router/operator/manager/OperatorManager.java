@@ -1,12 +1,10 @@
 package com.juhezi.module.base.router.operator.manager;
 
-import com.juhezi.module.base.router.URI;
-import com.juhezi.module.base.router.exception.DestNotFoundException;
+import com.juhezi.module.base.router.Uri;
 import com.juhezi.module.base.router.operator.ActivityOperator;
 import com.juhezi.module.base.router.operator.IOperator;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * Created by Juhezi[juhezix@163.com] on 2017/4/23.
@@ -45,12 +43,12 @@ public class OperatorManager {
      * @param protocol
      * @return
      */
-    public boolean checkOperatorForProtocol(@URI.Protocol String protocol) {
+    public boolean checkOperatorForProtocol(@Uri.Protocol String protocol) {
         return mOperatorPool != null
                 && mOperatorPool.keySet().contains(protocol);
     }
 
-    public boolean checkOperatorForURI(URI uri) {
+    public boolean checkOperatorForURI(Uri uri) {
         if (uri != null) {
             IOperator operator = getOperator(uri.getProtocol());
             if (operator != null) return true;
@@ -61,7 +59,7 @@ public class OperatorManager {
     /**
      * 根据 protocol 获取 Operator
      */
-    public <T, V> IOperator<T, V> getOperator(@URI.Protocol String protocol) {
+    public <T, V> IOperator<T, V> getOperator(@Uri.Protocol String protocol) {
         IOperator<T, V> operator = null;
         if (mOperatorPool != null) {
             operator = mOperatorPool.get(protocol);
@@ -69,7 +67,7 @@ public class OperatorManager {
         return operator;
     }
 
-    public <T> void putURI(URI uri, Class<T> clazz) {
+    public <T> void putURI(Uri uri, Class<T> clazz) {
         IOperator<T, ?> operator = getOperator(uri.getProtocol());
         if (operator != null) {
             operator.put(uri, clazz);
