@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.juhezi.module.db.domain.DailyTask;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -51,6 +53,7 @@ public class DBUtils extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //执行建表语句
+        db.execSQL(DailyTask.CREATE_SQL);   //Create the daily_task
     }
 
     @Override
