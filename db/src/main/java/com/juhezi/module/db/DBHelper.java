@@ -13,9 +13,9 @@ import java.util.ResourceBundle;
  * Created by Juhezi[juhezix@163.com] on 2017/5/16.
  */
 
-public class DBUtils extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 
-    private static String TAG = DBUtils.class.getSimpleName();
+    private static String TAG = DBHelper.class.getSimpleName();
 
     private static final String DB_NAME_KEY = "db.name";
     private static final String DB_VERSION_KEY = "db.version";
@@ -36,16 +36,16 @@ public class DBUtils extends SQLiteOpenHelper {
         }
     }
 
-    private static DBUtils sInstance;
+    private static DBHelper sInstance;
 
-    public static DBUtils getInstance(Context context) {
+    public static DBHelper getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new DBUtils(context, dbName, null, dbVersion);
+            sInstance = new DBHelper(context, dbName, null, dbVersion);
         }
         return sInstance;
     }
 
-    private DBUtils(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         mContext = context;
     }

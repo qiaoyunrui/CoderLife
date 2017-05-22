@@ -113,6 +113,7 @@ public class LocalResponse implements Response {
                     Cursor cursor = database.rawQuery(sql, null);
                     List<LogContent> list = cursor2LogContent(cursor);
                     action.onAction(list);
+                    database.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     action.onAction(new ArrayList<LogContent>());

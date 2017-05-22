@@ -24,6 +24,7 @@ public class DailyTask {
     public static final String LIMIT_DATE = "limit_date";
     public static final String STATE = "state";
 
+    //Test OK
     public final static String CREATE_SQL =
             "create table if not exists " + TABLE_NAME +
                     "(" +
@@ -103,7 +104,7 @@ public class DailyTask {
         return this;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 
