@@ -7,14 +7,12 @@ import java.util.*
  */
 fun main(args: Array<String>) {
     var sql = """
-UPDATE daily_task
-   SET id = 'id',
-       title = 'title',
-       content = 'content',
-       create_date = 'create_date',
-       limit_date = 'limit_date',
-       state = 'state'
- WHERE id = 'ABCD-2134';
+SELECT id,
+       content,
+       create_date,
+       limit_date,
+       state
+  FROM daily_task;
 """
     var newSql = sql.replace("""(\s+)""".toRegex()," ")
     println(newSql)

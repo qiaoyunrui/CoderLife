@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 public class Task {
 
-    public static final String TABLE_NAME = "daily_task";
+    public static final String TABLE_NAME = "task";
     public static final String ID = "id";
     public static final String CONTENT = "content";
     public static final String CREATE_DATE = "create_date";
@@ -27,7 +27,7 @@ public class Task {
     public final static String CREATE_SQL =
             "create table if not exists " + TABLE_NAME +
                     "(" +
-                    ID + " text primary key," +
+                    ID + " text primary key not null," +
                     CONTENT + " text," +
                     CREATE_DATE + " integer," +
                     LIMIT_DATE + " integer," +
@@ -39,6 +39,9 @@ public class Task {
     private Date createDate;
     private Date limitDate;
     private boolean state;
+
+    public Task() {
+    }
 
     public Task(String id, String content, Date createDate, Date limitDate, boolean state) {
         this.id = id;
