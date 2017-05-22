@@ -7,18 +7,17 @@ import java.util.UUID;
  * Created by Juhezi[juhezix@163.com] on 2017/5/16.
  * 每日任务，即原来的日志
  * id:String
- * Title:String
+ * Title:String [删除]，任务不需要这个属性
  * Content:String
  * TagId:long [Tag 的 ID] -> 取消这个属性，暂时先不做
  * CreateDate:Date  创建日期
  * LimitDate:Date   截至日期，默认为当天夜里 11:59
  * State:Boolean   状态
  */
-public class DailyTask {
+public class Task {
 
     public static final String TABLE_NAME = "daily_task";
     public static final String ID = "id";
-    public static final String TITLE = "title";
     public static final String CONTENT = "content";
     public static final String CREATE_DATE = "create_date";
     public static final String LIMIT_DATE = "limit_date";
@@ -29,7 +28,6 @@ public class DailyTask {
             "create table if not exists " + TABLE_NAME +
                     "(" +
                     ID + " text primary key," +
-                    TITLE + " text," +
                     CONTENT + " text," +
                     CREATE_DATE + " integer," +
                     LIMIT_DATE + " integer," +
@@ -37,43 +35,32 @@ public class DailyTask {
                     ")";    //建表语句
 
     private String id;
-    private String title;
     private String content;
     private Date createDate;
     private Date limitDate;
     private boolean state;
 
-    public DailyTask(String id, String title, String content, Date createDate, Date limitDate, boolean state) {
+    public Task(String id, String content, Date createDate, Date limitDate, boolean state) {
         this.id = id;
-        this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.limitDate = limitDate;
         this.state = state; //false -> 未完成 true -> 已完成
     }
 
-    public static DailyTask create() {
+    public static Task create() {
         String id = UUID.randomUUID().toString();
         Date sDate = new Date();  //当前时间设置为开始
         Date lDate = new Date(sDate.getYear(), sDate.getMonth(), sDate.getDate(), 23, 59, 59);    //将当天的最后一刻设置为截至时间.
-        return new DailyTask(id, "", "", sDate, lDate, false);
+        return new Task(id, "", sDate, lDate, false);
     }
 
     public String getId() {
         return id;
     }
 
-    public DailyTask setId(String id) {
+    public Task setId(String id) {
         this.id = id;
-        return this;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public DailyTask setTitle(String title) {
-        this.title = title;
         return this;
     }
 
@@ -81,7 +68,7 @@ public class DailyTask {
         return content;
     }
 
-    public DailyTask setContent(String content) {
+    public Task setContent(String content) {
         this.content = content;
         return this;
     }
@@ -90,7 +77,7 @@ public class DailyTask {
         return createDate;
     }
 
-    public DailyTask setCreateDate(Date createDate) {
+    public Task setCreateDate(Date createDate) {
         this.createDate = createDate;
         return this;
     }
@@ -99,7 +86,7 @@ public class DailyTask {
         return limitDate;
     }
 
-    public DailyTask setLimitDate(Date limitDate) {
+    public Task setLimitDate(Date limitDate) {
         this.limitDate = limitDate;
         return this;
     }
@@ -108,7 +95,7 @@ public class DailyTask {
         return state;
     }
 
-    public DailyTask setState(boolean state) {
+    public Task setState(boolean state) {
         this.state = state;
         return this;
     }
