@@ -7,7 +7,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".tasks.TasksActivity" />
 
     </application>
 
