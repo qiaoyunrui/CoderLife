@@ -1,1 +1,1 @@
-include ':app', ':loadablebutton', ':base', ':db', ':librarys', ':test'
+include ':app', ':loadablebutton', ':base', ':db', ':librarys', ':test', ':dailytasks'
