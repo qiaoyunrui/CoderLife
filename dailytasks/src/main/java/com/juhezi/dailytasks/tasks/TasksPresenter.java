@@ -5,6 +5,14 @@ package com.juhezi.dailytasks.tasks;
  */
 
 public class TasksPresenter implements TasksContract.Presenter {
+
+    private TasksContract.View mView;
+
+    public TasksPresenter(TasksContract.View view) {
+        this.mView = view;
+        view.setPresenter(this);
+    }
+
     @Override
     public void start() {
 

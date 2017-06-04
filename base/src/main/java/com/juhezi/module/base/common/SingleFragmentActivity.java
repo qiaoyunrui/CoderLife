@@ -1,4 +1,4 @@
-package com.juhezi.module.base;
+package com.juhezi.module.base.common;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -16,13 +16,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();
 
-    protected void init() {
+    protected void init(@Nullable Bundle savedInstanceState) {
     }
 
     /**
      * Activity Layout Resource
-     *
-     * @return
+     * @return Layout Resource
      */
     @LayoutRes
     protected abstract int getLayoutResId();
@@ -47,6 +46,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .add(getFragmentWrapperId(), fragment)
                     .commit();
         }
-        init();
+        init(savedInstanceState);
     }
 }
