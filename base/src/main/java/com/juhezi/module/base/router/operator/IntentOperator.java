@@ -3,7 +3,7 @@ package com.juhezi.module.base.router.operator;
 import android.content.Context;
 import android.content.Intent;
 
-import com.juhezi.module.base.router.Uri;
+import com.juhezi.module.base.router.JUri;
 import com.juhezi.module.base.router.exception.DestNotFoundException;
 
 import java.util.HashMap;
@@ -24,27 +24,27 @@ public abstract class IntentOperator<T> implements
     }
 
     @Override
-    public void put(Uri uri, Class<T> clazz) {
+    public void put(JUri JUri, Class<T> clazz) {
         if (mIntentMap != null) {
-            mIntentMap.put(uri.toString(), clazz);
+            mIntentMap.put(JUri.toString(), clazz);
         }
     }
 
     @Override
-    public Intent invoke(Uri uri, Context context) throws DestNotFoundException {
+    public Intent invoke(JUri JUri, Context context) throws DestNotFoundException {
         Class<T> clazz = null;
-        if (check(uri)) {
-            clazz = mIntentMap.get(uri.toString());
+        if (check(JUri)) {
+            clazz = mIntentMap.get(JUri.toString());
         }
         if (clazz == null) {    //路由表并没这个地址
-            throw new DestNotFoundException(uri.toString());
+            throw new DestNotFoundException(JUri.toString());
         }
         return new Intent(context, clazz);
     }
 
     @Override
-    public boolean check(Uri uri) {
+    public boolean check(JUri JUri) {
         return mIntentMap != null &&
-                mIntentMap.keySet().contains(uri.toString());
+                mIntentMap.keySet().contains(JUri.toString());
     }
 }

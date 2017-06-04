@@ -9,7 +9,7 @@ import android.support.annotation.StringDef;
  * <p>
  * 例如:
  */
-public class Uri {
+public class JUri {
 
     private static final String separator = "://";
 
@@ -26,7 +26,7 @@ public class Uri {
 
     private String path;
 
-    public Uri(@Protocol String protocol, String path) {
+    public JUri(@Protocol String protocol, String path) {
         this.protocol = protocol;
         this.path = path;
     }
@@ -49,9 +49,9 @@ public class Uri {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Uri uri = (Uri) o;
-        if (protocol != null ? !protocol.equals(uri.protocol) : uri.protocol != null) return false;
-        return path != null ? path.equals(uri.path) : uri.path == null;
+        JUri JUri = (JUri) o;
+        if (protocol != null ? !protocol.equals(JUri.protocol) : JUri.protocol != null) return false;
+        return path != null ? path.equals(JUri.path) : JUri.path == null;
     }
 
 }

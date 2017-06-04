@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.juhezi.module.base.router.Uri;
+import com.juhezi.module.base.router.JUri;
 import com.juhezi.module.base.router.operator.manager.OMP;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mButton;
 
-    public static final Uri URL = new Uri(Uri.ACTIVITY, MainActivity.class.getName());
+    public static final JUri URL = new JUri(JUri.ACTIVITY, MainActivity.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

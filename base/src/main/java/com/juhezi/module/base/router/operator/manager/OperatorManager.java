@@ -1,6 +1,6 @@
 package com.juhezi.module.base.router.operator.manager;
 
-import com.juhezi.module.base.router.Uri;
+import com.juhezi.module.base.router.JUri;
 import com.juhezi.module.base.router.operator.ActivityOperator;
 import com.juhezi.module.base.router.operator.IOperator;
 
@@ -43,14 +43,14 @@ public class OperatorManager {
      * @param protocol
      * @return
      */
-    public boolean checkOperatorForProtocol(@Uri.Protocol String protocol) {
+    public boolean checkOperatorForProtocol(@JUri.Protocol String protocol) {
         return mOperatorPool != null
                 && mOperatorPool.keySet().contains(protocol);
     }
 
-    public boolean checkOperatorForURI(Uri uri) {
-        if (uri != null) {
-            IOperator operator = getOperator(uri.getProtocol());
+    public boolean checkOperatorForURI(JUri JUri) {
+        if (JUri != null) {
+            IOperator operator = getOperator(JUri.getProtocol());
             if (operator != null) return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class OperatorManager {
     /**
      * 根据 protocol 获取 Operator
      */
-    public <T, V> IOperator<T, V> getOperator(@Uri.Protocol String protocol) {
+    public <T, V> IOperator<T, V> getOperator(@JUri.Protocol String protocol) {
         IOperator<T, V> operator = null;
         if (mOperatorPool != null) {
             operator = mOperatorPool.get(protocol);
@@ -67,10 +67,10 @@ public class OperatorManager {
         return operator;
     }
 
-    public <T> void putURI(Uri uri, Class<T> clazz) {
-        IOperator<T, ?> operator = getOperator(uri.getProtocol());
+    public <T> void putURI(JUri JUri, Class<T> clazz) {
+        IOperator<T, ?> operator = getOperator(JUri.getProtocol());
         if (operator != null) {
-            operator.put(uri, clazz);
+            operator.put(JUri, clazz);
         }
     }
 

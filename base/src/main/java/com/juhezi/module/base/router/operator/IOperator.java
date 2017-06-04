@@ -2,7 +2,7 @@ package com.juhezi.module.base.router.operator;
 
 import android.content.Context;
 
-import com.juhezi.module.base.router.Uri;
+import com.juhezi.module.base.router.JUri;
 import com.juhezi.module.base.router.exception.DestNotFoundException;
 
 /**
@@ -14,26 +14,26 @@ public interface IOperator<T, K> {
     /**
      * 添加路由器地址
      *
-     * @param uri
+     * @param JUri
      * @param clazz
      */
-    void put(Uri uri, Class<T> clazz);
+    void put(JUri JUri, Class<T> clazz);
 
     /**
      * 执行路由操作
      *
      * @param context
-     * @param uri
+     * @param JUri
      * @return
      */
-    K invoke(Uri uri, Context context) throws DestNotFoundException;
+    K invoke(JUri JUri, Context context) throws DestNotFoundException;
 
     /**
      * 检查当前路由线路是否存在
      *
-     * @param uri
+     * @param JUri
      * @return
      */
-    boolean check(Uri uri);
+    boolean check(JUri JUri);
 
 }
