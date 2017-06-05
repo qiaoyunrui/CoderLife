@@ -24,7 +24,7 @@ public class TypefaceBuilder {
 
     public static Typeface build() {
         if (!TextUtils.isEmpty(path) && assetManager != null) {
-            return Typeface.createFromAsset(null, path);
+            return Typeface.createFromAsset(assetManager, path);
         }
         return null;
     }

@@ -46,7 +46,8 @@ public class TasksFragment extends BaseFragment implements TasksContract.View {
         mToolbar = (Toolbar) rootView.findViewById(R.id.tasks_fragment_tb);
         getAppCompatActivity().setSupportActionBar(mToolbar);
         mActionBar = getAppCompatActivity().getSupportActionBar();
-        TextView textView = (TextView) rootView.findViewById(R.id.tv_test);
+        mActionBar.setTitle(null);
+        TextView textView = (TextView) rootView.findViewById(R.id.tasks_fragment_tv_title);
         textView.setTypeface(TypefaceBuilder.build());
     }
 

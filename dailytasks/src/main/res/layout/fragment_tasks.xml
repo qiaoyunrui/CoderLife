@@ -10,19 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/colorPrimary"
-        android:theme="@style/Toolbar" />
+        android:theme="@style/Toolbar">
+
+        <TextView
+            android:id="@+id/tasks_fragment_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbar_title_text_size" />
+
+    </android.support.v7.widget.Toolbar>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tv_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Juhezi : 居合子"
-            android:textSize="25sp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/tasks_fragment_fab_add_task"
