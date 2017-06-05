@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.juhezi.dailytasks.R;
 import com.juhezi.module.base.common.BaseFragment;
+import com.juhezi.module.base.util.TypefaceBuilder;
 
 /**
  * Created by Juhezi[juhezix@163.com] on 2017/5/24.
@@ -44,6 +46,8 @@ public class TasksFragment extends BaseFragment implements TasksContract.View {
         mToolbar = (Toolbar) rootView.findViewById(R.id.tasks_fragment_tb);
         getAppCompatActivity().setSupportActionBar(mToolbar);
         mActionBar = getAppCompatActivity().getSupportActionBar();
+        TextView textView = (TextView) rootView.findViewById(R.id.tv_test);
+        textView.setTypeface(TypefaceBuilder.build());
     }
 
     @Override
