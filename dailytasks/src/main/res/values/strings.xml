@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">每日任务</string>
     <string name="input_your_daily_task">输入你的今日任务</string>
+    <string name="add">添加</string>
 </resources>

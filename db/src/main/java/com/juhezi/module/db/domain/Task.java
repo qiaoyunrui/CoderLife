@@ -7,7 +7,6 @@ import java.util.UUID;
  * Created by Juhezi[juhezix@163.com] on 2017/5/16.
  * 每日任务，即原来的日志
  * id:String
- * Title:String [删除]，任务不需要这个属性
  * Content:String
  * TagId:long [Tag 的 ID] -> 取消这个属性，暂时先不做
  * CreateDate:Date  创建日期

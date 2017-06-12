@@ -19,7 +19,7 @@ import android.support.annotation.RequiresApi;
  * 1. get Path From Uri
  */
 
-public class UriUtils {
+public class UriUtil {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String getPath(final Context context, final Uri uri) {

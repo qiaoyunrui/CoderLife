@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.juhezi.module.base.router.JUri;
 import com.juhezi.module.base.router.operator.manager.OMP;
-import com.juhezi.module.base.util.IntentUtils;
+import com.juhezi.module.base.util.IntentUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                startActivity(IntentUtils.getOpenDocumentIntent(IntentUtils.IMAGE_TYPE));
+                startActivity(IntentUtil.getOpenDocumentIntent(IntentUtil.IMAGE_TYPE));
             }
         });
 

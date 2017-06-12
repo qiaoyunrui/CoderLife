@@ -9,7 +9,7 @@ import android.support.annotation.RequiresApi;
  * Created by Juhezi[juhezix@163.com] on 2017/6/4.
  */
 
-public class IntentUtils {
+public class IntentUtil {
 
     public static String DEFAULT_TYPE = "*/*";
 

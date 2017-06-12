@@ -13,6 +13,7 @@ public interface TasksContract {
     }
 
     interface View extends BaseView<Presenter> {
+
     }
 
 }
